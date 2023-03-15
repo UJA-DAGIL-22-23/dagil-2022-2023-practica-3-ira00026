@@ -1,5 +1,5 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10504148&assignment_repo_type=AssignmentRepo)
-# *Plantilla Práctica Microservicios*: descripción de la aplicación
+# *Datos Estudiante
 
 Nombre: Irene 
 
@@ -27,7 +27,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 •	Fecha de nacimiento del piloto: Compuesto por un campo día, mes y año.
 
 
-*-	CAMPOS TIPO VECTOR: *
+*-	CAMPOS TIPO VECTOR:*
 
 •	Años de experiencia del piloto: Un vector que contiene los años en los que el piloto ha competido en carreras de motociclismo.
 
@@ -254,6 +254,8 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 }
 
 ```
+
+# *Plantilla Práctica Microservicios*: descripción de la aplicación
 
 Este código que se presenta aquí corresponde a la plantilla para realizar un desarrollo basado en microservicios para las prácticas de Desarrollo Ágil, para el curso 2022-2023.
 
