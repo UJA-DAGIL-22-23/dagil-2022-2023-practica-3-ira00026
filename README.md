@@ -13,7 +13,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 
 ## Los campos elegidos para realizar la base de datos son:
 
--	CAMPOS TIPO NOMBRE:
+*-	CAMPOS TIPO NOMBRE:*
 
 •	Nombre: El nombre del piloto.
 
@@ -22,12 +22,12 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 •	Tipo de moto: El modelo de motocicleta que utiliza el piloto en las carreras.
 
 
--	CAMPOS TIPO COMPUESTO:
+*-	CAMPOS TIPO COMPUESTO:*
 
 •	Fecha de nacimiento del piloto: Compuesto por un campo día, mes y año.
 
 
--	CAMPOS TIPO VECTOR: 
+*-	CAMPOS TIPO VECTOR: *
 
 •	Años de experiencia del piloto: Un vector que contiene los años en los que el piloto ha competido en carreras de motociclismo.
 
@@ -36,7 +36,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 •	Marcas de motocicletas utilizadas: (campo de tipo vector que enumera las marcas de motocicletas que ha utilizado el piloto a lo 	largo de su carrera, por ejemplo: [Honda, Yamaha, Ducati])
 
 
--	CAMPOS TIPO NUMÉRICO:
+*-	CAMPOS TIPO NUMÉRICO:*
 
 •	Posición en el campeonato: Un campo numérico que indica la posición que ocupa el piloto en la clasificación del campeonato.
 
@@ -45,10 +45,11 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 ![Captura home](./assets/img/home.jpg)
 
 # Captura "Coleccion" de Faunia:
-(./assets/img/Coleccion.jpg)
+![Captura Coleccion](./assets/img/coleccion.jpg)
 
 # Captura "Documentos" de Faunia:
-(./assets/img/Documentos.jpg)
+![Captura Documentos](./assets/img/Documentos.jpg)
+
 
 
 ## DOCUMENTOS:
