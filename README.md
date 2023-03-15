@@ -7,7 +7,241 @@ Apellidos: Rubiales Argüelles
 
 Correo Electronico: ira00026@red.ujaen.es
 
+Deporte: Motociclismo
+
 Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b30816f60942973c0218CBFAF/practica-3
+
+## Los campos elegidos para realizar la base de datos son:
+
+-	CAMPOS TIPO NOMBRE:
+•	Nombre: El nombre del piloto.
+•	Nombre del equipo: Un campo de nombre que indica el nombre del equipo al que pertenece el piloto.
+•	Tipo de moto: El modelo de motocicleta que utiliza el piloto en las carreras.
+
+-	CAMPOS TIPO COMPUESTO:
+•	Fecha de nacimiento del piloto: Compuesto por un campo día, mes y año.
+
+-	CAMPOS TIPO VECTOR: 
+•	Años de experiencia del piloto: Un vector que contiene los años en los que el piloto ha competido en carreras de motociclismo.
+•	Puntuaciones en cada carrera: Un campo vector que incluye la puntuación obtenida por el piloto en cada carrera disputada en una 	temporada.
+•	Marcas de motocicletas utilizadas: (campo de tipo vector que enumera las marcas de motocicletas que ha utilizado el piloto a lo 	largo de su carrera, por ejemplo: [Honda, Yamaha, Ducati])
+
+-	CAMPOS TIPO NUMÉRICO:
+•	Posición en el campeonato: Un campo numérico que indica la posición que ocupa el piloto en la clasificación del campeonato.
+
+
+## Captura "home" de Faunia:
+./assets/img/home.jpeg
+
+# Captura "Coleccion" de Faunia:
+./assets/img/Coleccion.jpeg
+
+# Captura "Documentos" de Faunia:
+./assets/img/Documentos.jpeg
+
+
+## DOCUMENTOS:
+
+**Documento 1:**
+
+```
+{
+  "nombre": "Jorge Lorenzo",
+  "nombre_equipo": "Yamaha Factory Racing",
+  "tipo_moto": "Yamaha YZR-M1",
+  "fecha_nacimiento": {
+    "dia": 4,
+    "mes": 5,
+    "anio": 1987
+  },
+  "anios_experiencia": [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0],
+  "marcas_motocicletas": ["Aprilia", "Honda", "Yamaha", "Ducati"],
+  "posicion_campeonato": 7
+}
+
+
+```
+
+**Documento 2:**
+
+```
+{
+  "nombre": "Valentino Rossi",
+  "nombre_equipo": "Monster Energy Yamaha MotoGP",
+  "tipo_moto": "Yamaha YZR-M1",
+  "fecha_nacimiento": {
+    "dia": 16,
+    "mes": 2,
+    "anio": 1979
+  },
+  "anios_experiencia": [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["Aprilia", "Honda", "Yamaha", "Ducati"],
+  "posicion_campeonato": 10
+}
+
+```
+
+**Documento 3:**
+
+```
+{
+  "nombre": "Marc Márquez",
+  "nombre_equipo": "Repsol Honda Team",
+  "tipo_moto": "Honda RC213V",
+  "fecha_nacimiento": {
+    "dia": 17,
+    "mes": 2,
+    "anio": 1993
+  },
+  "anios_experiencia": [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["KTM", "Honda"],
+  "posicion_campeonato": 5
+}
+
+```
+
+**Documento 4:**
+
+```
+{
+  "nombre": "Joan Mir",
+  "nombre_equipo": "Team Suzuki Ecstar",
+  "tipo_moto": "Suzuki GSX-RR",
+  "fecha_nacimiento": {
+    "dia": 1,
+    "mes": 9,
+    "anio": 1997
+  },
+  "anios_experiencia": [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9],
+  "marcas_motocicletas": ["KTM", "Suzuki"],
+  "posicion_campeonato": 1
+}
+
+```
+
+**Documento 5:**
+
+```
+{
+  "nombre": "Maverick Viñales",
+  "nombre_equipo": "Monster Energy Yamaha MotoGP",
+  "tipo_moto": "Yamaha YZR-M1",
+  "fecha_nacimiento": {
+    "dia": 12,
+    "mes": 1,
+    "anio": 1995
+  },
+  "anios_experiencia": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["Suzuki", "Yamaha"],
+  "posicion_campeonato": 9
+}
+
+```
+
+**Documento 6:**
+
+```
+{
+  "nombre": "Fabio Quartararo",
+  "nombre_equipo": "Monster Energy Yamaha MotoGP",
+  "tipo_moto": "Yamaha YZR-M1",
+  "fecha_nacimiento": {
+    "dia": 20,
+    "mes": 4,
+    "anio": 1999
+  },
+  "anios_experiencia": [2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["Yamaha"],
+  "posicion_campeonato": 2
+}
+
+```
+
+**Documento 7:**
+
+```
+{
+  "nombre": "Johann Zarco",
+  "nombre_equipo": "Pramac Racing",
+  "tipo_moto": "Ducati Desmosedici GP",
+  "fecha_nacimiento": {
+    "dia": 16,
+    "mes": 7,
+    "anio": 1990
+  },
+  "anios_experiencia": [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["Yamaha", "Honda", "Ducati"],
+  "posicion_campeonato": 7
+}
+
+```
+
+**Documento 8:**
+
+```
+{
+  "nombre": "Alex Rins",
+  "nombre_equipo":  "Team Suzuki Ecstar",
+  "tipo_moto": " Suzuki GS X-RR",
+  "fecha_nacimiento": {
+    "dia": 8,
+    "mes": 12,
+    "anio": 1995
+  },
+  "anios_experiencia": [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["Suzuki", "Yamaha", "Aprilia"],
+  "posicion_campeonato": 11
+}
+
+```
+
+**Documento 9:**
+
+```
+{
+  "nombre": "Enea Bastianini",
+  "nombre_equipo": "Avintia Esponsorama Racing",
+  "tipo_moto": "Ducati Desmosedici GP",
+  "fecha_nacimiento": {
+    "dia": 30,
+    "mes": 12,
+    "anio": 1997
+  },
+  "anios_experiencia": [2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["Ducati"],
+  "posicion_campeonato": 16
+}
+
+```
+
+**Documento 10:**
+
+```
+{
+  "nombre": "Iker Lecuona",
+  "nombre_equipo": "Tech 3 KTM Factory Racing",
+  "tipo_moto": "KTM RC16",
+  "fecha_nacimiento": {
+    "dia": 6,
+    "mes": 1,
+    "anio": 2000
+  },
+  "anios_experiencia": [2020, 2021],
+  "puntuaciones_carrera": [25, 20, 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "marcas_motocicletas": ["KTM"],
+  "posicion_campeonato": 21
+}
+
+```
 
 Este código que se presenta aquí corresponde a la plantilla para realizar un desarrollo basado en microservicios para las prácticas de Desarrollo Ágil, para el curso 2022-2023.
 
