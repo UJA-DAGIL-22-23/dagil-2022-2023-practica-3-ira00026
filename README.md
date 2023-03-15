@@ -31,13 +31,13 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 
 
 ## Captura "home" de Faunia:
-./assets/img/home.jpg
+(./assets/img/home.jpg)
 
 # Captura "Coleccion" de Faunia:
-./assets/img/Coleccion.jpg
+(./assets/img/Coleccion.jpg)
 
 # Captura "Documentos" de Faunia:
-./assets/img/Documentos.jpg
+(./assets/img/Documentos.jpg)
 
 
 ## DOCUMENTOS:
