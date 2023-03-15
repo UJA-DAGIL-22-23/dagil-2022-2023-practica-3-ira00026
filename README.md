@@ -41,18 +41,18 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 •	Posición en el campeonato: Un campo numérico que indica la posición que ocupa el piloto en la clasificación del campeonato.
 
 
-## Captura "home" de Faunia:
+## Captura "home" de Fauna:
 ![Captura home](./assets/img/home.jpg)
 
-# Captura "Coleccion" de Faunia:
+# Captura "Coleccion" de Fauna:
 ![Captura Coleccion](./assets/img/Coleccion.jpg)
 
-# Captura "Documentos" de Faunia:
+# Captura "Documentos" de Fauna:
 ![Captura Documentos](./assets/img/Documentos.jpg)
 
 
 
-## DOCUMENTOS:
+## DOCUMENTOS (En formato JSON):
 
 **Documento 1:**
 
