@@ -2,8 +2,11 @@
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
 Nombre: Irene 
+
 Apellidos: Rubiales Argüelles
+
 Correo Electronico: ira00026@red.ujaen.es
+
 Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b30816f60942973c0218CBFAF/practica-3
 
 Este código que se presenta aquí corresponde a la plantilla para realizar un desarrollo basado en microservicios para las prácticas de Desarrollo Ágil, para el curso 2022-2023.
