@@ -3,7 +3,7 @@
  * @description Callbacks para el MS Plantilla.
  * Los callbacks son las funciones que se llaman cada vez que se recibe una petición a través de la API.
  * Las peticiones se reciben en las rutas definidas en routes.js, pero se procesan aquí.
- * @author Víctor M. Rivas <vrivas@ujaen.es>
+ * @author Irene Rubiales <ira00026@readonly.ujaen.es>
  * @date 03-feb-2023
  */
 
@@ -14,10 +14,10 @@ const faunadb = require('faunadb'),
     q = faunadb.query;
 
 const client = new faunadb.Client({
-    secret: '¿¿¿ CLAVE SECRETA EN FAUNA PARA ESTA BBDD???',
+    secret: 'fnAE_HY8q3AAzbbDySV98UNwamCpJr6weHO8OKld',
 });
 
-const COLLECTION = "¿¿¿ COLECCION ???"
+const COLLECTION = "Colecmoto"
 
 // CALLBACKS DEL MODELO
 
@@ -49,20 +49,42 @@ const CB_MODEL_SELECTS = {
      */
     test_db: async (req, res) => {
         try {
-            let personas = await client.query(
+            let Plantilla = await client.query(
                 q.Map(
                     q.Paginate(q.Documents(q.Collection(COLLECTION))),
                     q.Lambda("X", q.Get(q.Var("X")))
                 )
             )
-            res.status(200).json(personas)
+            res.status(200).json(Plantilla)
         } catch (error) {
-            res.status(500).json({ error: error.description })
+           res.status(500).json({ error: error.description })
         }
     },
 
-}
+/**
+     * Método para obtener todos los datos de Colecmoto de la BBDD.
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+getTodos: async (req, res) => {
+    try {
+        let motociclistas = await client.query(
+            q.Map(
+                q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                q.Lambda("X", q.Get(q.Var("X")))
+            )
+        )
+        // console.log( proyectos ) // Para comprobar qué se ha devuelto en proyectos
+        CORS(res)
+            .status(200)
+            .json(motociclistas)
+    } catch (error) {
+       CORS(res).status(500).json({ error: error.description })
+    }
+},
 
+}
+ 
 
 
 // CALLBACKS ADICIONALES
@@ -93,9 +115,9 @@ const CB_OTHERS = {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
+                autor: "Irene Rubiales Arguelles",
+                email: "ira00026@red.ujaen.es",
+                fecha: "Marzo 2023"
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })

@@ -1,7 +1,7 @@
 /**
  * @file front-end.js
  * @description Funciones comunes para todos los módulos de front-end. Debe cargarse la primera de todas.
- * @author Víctor M. Rivas <vrivas@ujaen.es>
+ * @author Irene Rubiales <ira00026@readonly.ujaen.es>
  * @date 06-feb-2023
  */
 
@@ -25,7 +25,7 @@ Frontend.Article = {}
 /**
  * Cambia toda la información del article
  * @param {String} titulo Información para el título del article 
- * @param {String} contenido INformacion para el contenido del article
+ * @param {String} contenido Informacion para el contenido del article
  * @returns El propio Article para concatenar llamadas
  */
 Frontend.Article.actualizar = function (titulo, contenido) {

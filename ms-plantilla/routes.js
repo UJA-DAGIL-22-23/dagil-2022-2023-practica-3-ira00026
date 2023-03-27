@@ -46,6 +46,16 @@ router.get("/test_db", async (req, res) => {
     }
 });
 
+/**
+ * Devuelve todas las personas(motociclistas) que hay en la BBDD
+ */
+router.get("/getTodos", async (req, res) => {
+    try {
+        await callbacks.getTodos(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

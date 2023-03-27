@@ -1,7 +1,7 @@
 /**
  * @file server.js
  * @description Define el servidor que aceptará las peticiones para esta aplicación.
- * @author Víctor M. Rivas <vrivas@ujaen.es>
+ * @author Irene Rubiales <ira00026@readonly.ujaen.es>
  * @date 03-feb-2023
  */
 const express = require("express")
