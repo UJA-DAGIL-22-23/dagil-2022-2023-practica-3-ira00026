@@ -109,6 +109,50 @@ Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
 
+
+/**
+ * Función que recuperar todos los proyectos llamando al MS Proyectos
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recupera = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los proyectos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data)
+    }
+}
+
+
+/**
+ * Función para mostrar en pantalla todos los proyectos que se han recuperado de la BBDD.
+ * @param {Vector_de_motociclistas} vector Vector con los datos de los motociclistas a mostrar
+ */
+Plantilla.imprime = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTable();
+    vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+    msj += Plantilla.pieTable();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de motociclistas", msj )
+
+}
+
 // Funciones para mostrar como TABLE
 
 /**
@@ -140,7 +184,7 @@ Plantilla.cuerpoTr = function (p) {
     <td>${d.nombre}</td>
     <td><em>${d.nombre_equipo}</em></td>
     <td>${d.tipo_moto}</td>
-    <td>${fecha.dia}/${fecha.mes}/${fecha.año}</td>
+    <td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td>
     <td>${d.anios_experiencia}</td>
     <td>${d.puntuaciones_carrera}</td>
     <td>${d.marcas_motocicletas}</td>
@@ -155,48 +199,6 @@ Plantilla.cuerpoTr = function (p) {
  */
 Plantilla.pieTable = function () {
     return "</tbody></table>";
-}
-
-/**
- * Función que recuperar todos los proyectos llamando al MS Proyectos
- * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
- */
-Plantilla.recupera = async function (callBackFn) {
-    let response = null
-
-    // Intento conectar con el microservicio proyectos
-    try {
-        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
-        response = await fetch(url)
-
-    } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
-        console.error(error)
-        //throw error
-    }
-
-    // Muestro todos los proyectos que se han descargado
-    let vectorPlantilla = null
-    if (response) {
-        vectorPlantilla = await response.json()
-        callBackFn(vectorPlantilla.data)
-    }
-}
-
-/**
- * Función para mostrar en pantalla todos los proyectos que se han recuperado de la BBDD.
- * @param {Vector_de_motociclistas} vector Vector con los datos de los motociclistas a mostrar
- */
-Plantilla.imprime = function (vector) {
-    //console.log( vector ) // Para comprobar lo que hay en vector
-    let msj = "";
-    msj += Plantilla.cabeceraTable();
-    vector.forEach(e => msj += Plantilla.cuerpoTr(e))
-    msj += Plantilla.pieTable();
-
-    // Borro toda la info de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar( "Listado de motociclistas", msj )
-
 }
 
 /**
