@@ -96,7 +96,7 @@ getNombres: async (req, res) => {
                 q.Lambda("X", q.Select(["data", "nombre"], q.Get(q.Var("X"))))
             )
         )
-        console.log(motociclistas)
+        
         CORS(res)
             .status(200)
             .json(motociclistas)
@@ -104,12 +104,14 @@ getNombres: async (req, res) => {
         CORS(res).status(500).json({ error: error.description })
     }
 },
+
 /**
      * Método para obtener todos los nombres de Colecmoto de la BBDD.
      * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
      * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
      */
 getNAlfabeticamente: async (req, res) => {
+    
     try {
         let motociclistas = await client.query(
             q.Map(

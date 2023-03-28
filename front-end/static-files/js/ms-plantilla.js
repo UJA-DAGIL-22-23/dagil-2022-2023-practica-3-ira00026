@@ -277,16 +277,7 @@ Plantilla.cabeceraTableN = function () {
  * @returns Cadena conteniendo todo el elemento TR que muestra el proyecto.
  */
 Plantilla.cuerpoTrN = function (nombre) {
-    //const d = p.data
-    
-/*
-    return `
-    <tr title="${p.ref['@ref'].id}">
-    <td>${d.nombre}</td>
-
-    </tr>
-    `;
-    */
+   
     return `
     <tr">
     <td>${nombre}</td>
@@ -380,11 +371,11 @@ Plantilla.cabeceraTableNAZ = function () {
  * @param {motociclistas} m Datos del motociclista a mostrar
  * @returns Cadena conteniendo todo el elemento TR que muestra el proyecto.
  */
-Plantilla.cuerpoTrNAZ = function (nombre) {
+Plantilla.cuerpoTrNAZ = function (NAZ) {
 
     return `
     <tr">
-    <td>${nombre}</td>
+    <td>${NAZ}</td>
 
     </tr>
     `;
