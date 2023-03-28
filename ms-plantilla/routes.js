@@ -68,5 +68,16 @@ router.get("/getNombres", async (req, res) => {
     }
 });
 
+/**
+ * Devuelve todos los nombres (motociclistas) por orden alfabético que hay en la BBDD
+ */
+router.get("/getNAlfabeticamente", async (req, res) => {
+    try {
+        await callbacks.getNAlfabeticamente(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

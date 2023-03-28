@@ -104,7 +104,30 @@ getNombres: async (req, res) => {
         CORS(res).status(500).json({ error: error.description })
     }
 },
-
+/**
+     * Método para obtener todos los nombres de Colecmoto de la BBDD.
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+getNAlfabeticamente: async (req, res) => {
+    try {
+        let motociclistas = await client.query(
+            q.Map(
+                q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                q.Lambda("X", q.Select(["data"], q.Get(q.Var("X"))))
+            ),
+            { events: true }
+        )
+        motociclistas.data.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Ordena por el campo "nombre"
+        
+        console.log(motociclistas)
+        CORS(res)
+            .status(200)
+            .json(motociclistas)
+    } catch (error) {
+        CORS(res).status(500).json({ error: error.description })
+    }
+},
 }
  
 

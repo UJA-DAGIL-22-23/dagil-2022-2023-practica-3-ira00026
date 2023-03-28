@@ -311,3 +311,98 @@ Plantilla.pieTableN = function () {
 Plantilla.listarNombres = function () {
   this.recuperaNombres(this.imprimeNombres);
 }
+
+
+
+// REALIZAMOS LA OPCIÓN DE MOSTRAR NOMBRES POR RORDEN ALFABÉTICO
+
+/**
+ * Función que recuperar todos los datos llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recuperaNombresAZ = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getNAlfabeticamente"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los datos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data)
+    }
+}
+
+
+/**
+ * Función para mostrar en pantalla todos los DATOS que se han recuperado de la BBDD.
+ * @param {Vector_de_motociclistas} vector Vector con los datos de los motociclistas a mostrar
+ */
+Plantilla.imprimeNAZ = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTableNAZ();
+    vector.forEach(e => msj += Plantilla.cuerpoTrNAZ(e))
+    msj += Plantilla.pieTableNAZ();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de NOMBRES Aa-Zz de motociclistas", msj )
+
+}
+
+// Funciones para mostrar como TABLE
+
+/**
+ * Crea la cabecera para mostrar la info como tabla
+ * @returns Cabecera de la tabla
+ */
+Plantilla.cabeceraTableNAZ = function () {
+    return `<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+
+/**
+ * Muestra los nombres ordenados alfabéticamente en un elemento TR con sus correspondientes TD
+ * @param {motociclistas} m Datos del motociclista a mostrar
+ * @returns Cadena conteniendo todo el elemento TR que muestra el proyecto.
+ */
+Plantilla.cuerpoTrNAZ = function (nombre) {
+
+    return `
+    <tr">
+    <td>${nombre}</td>
+
+    </tr>
+    `;
+}
+
+/**
+ * Pie de la tabla en la que se muestran las personas
+ * @returns Cadena con el pie de la tabla
+ */
+Plantilla.pieTableNAZ = function () {
+    return "</tbody></table>";
+}
+
+/**
+ * Función principal para recuperar los nombres por orden alfabético de los motociclistas desde el MS y, posteriormente, imprimirlos.
+ * @returns True
+ */
+
+Plantilla.listarNombresAZ = function () {
+  this.recuperaNombresAZ(this.imprimeNAZ);
+}
