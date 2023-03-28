@@ -111,7 +111,7 @@ Plantilla.procesarAcercaDe = function () {
 
 
 /**
- * Función que recuperar todos los proyectos llamando al MS Proyectos
+ * Función que recuperar todos los datos llamando al MS Plantilla
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
  */
 Plantilla.recupera = async function (callBackFn) {
@@ -185,9 +185,9 @@ Plantilla.cuerpoTr = function (p) {
     <td><em>${d.nombre_equipo}</em></td>
     <td>${d.tipo_moto}</td>
     <td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td>
-    <td>${d.anios_experiencia}</td>
-    <td>${d.puntuaciones_carrera}</td>
-    <td>${d.marcas_motocicletas}</td>
+    <td>${anios_experiencia}</td>
+    <td>${puntuaciones_carrera}</td>
+    <td>${marcas_motocicletas}</td>
     <td>${d.posicion_campeonato}</td>
     </tr>
     `;
@@ -202,10 +202,112 @@ Plantilla.pieTable = function () {
 }
 
 /**
- * Función principal para recuperar los proyectos desde el MS y, posteriormente, imprimirlos.
+ * Función principal para recuperar los datos desde el MS y, posteriormente, imprimirlos.
  * @returns True
  */
 
 Plantilla.listar = function () {
   this.recupera(this.imprime);
+}
+
+// REALIZAMOS LA OPCIÓN DE MOSTRAR SOLO NOMBRES
+
+/**
+ * Función que recuperar todos los datos llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recuperaNombres = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getNombres"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los datos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data)
+    }
+}
+
+
+/**
+ * Función para mostrar en pantalla todos los DATOS que se han recuperado de la BBDD.
+ * @param {Vector_de_motociclistas} vector Vector con los datos de los motociclistas a mostrar
+ */
+Plantilla.imprimeNombres = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTableN();
+    vector.forEach(e => msj += Plantilla.cuerpoTrN(e))
+    msj += Plantilla.pieTableN();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de NOMBRES de motociclistas", msj )
+
+}
+
+// Funciones para mostrar como TABLE
+
+/**
+ * Crea la cabecera para mostrar la info como tabla
+ * @returns Cabecera de la tabla
+ */
+Plantilla.cabeceraTableN = function () {
+    return `<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+
+/**
+ * Muestra la información de cada proyecto en un elemento TR con sus correspondientes TD
+ * @param {motociclistas} m Datos del motociclista a mostrar
+ * @returns Cadena conteniendo todo el elemento TR que muestra el proyecto.
+ */
+Plantilla.cuerpoTrN = function (nombre) {
+    //const d = p.data
+    
+/*
+    return `
+    <tr title="${p.ref['@ref'].id}">
+    <td>${d.nombre}</td>
+
+    </tr>
+    `;
+    */
+    return `
+    <tr">
+    <td>${nombre}</td>
+
+    </tr>
+    `;
+}
+
+/**
+ * Pie de la tabla en la que se muestran las personas
+ * @returns Cadena con el pie de la tabla
+ */
+Plantilla.pieTableN = function () {
+    return "</tbody></table>";
+}
+
+/**
+ * Función principal para recuperar los nombres de los motociclistas desde el MS y, posteriormente, imprimirlos.
+ * @returns True
+ */
+
+Plantilla.listarNombres = function () {
+  this.recuperaNombres(this.imprimeNombres);
 }

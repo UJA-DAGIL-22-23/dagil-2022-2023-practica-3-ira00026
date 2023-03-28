@@ -1,7 +1,7 @@
 /**
  * @file ms-plantilla.css
  * @description Estilos aplicables a la visualización de elementos relacionados con el MS Plantilla
- * @author Víctor M. Rivas Santos <vrivas@ujaen.es>
+ * @author Irene Rubiales <ira00026@red.ujaen.es>
  * @date 03-Feb-2023
  */
 
@@ -13,21 +13,21 @@
 
 table.listado-Plantilla {
     width: 100%;
-    border: 1px solid rgba(0, 0, 100, 0.8);
+    border: 1px solid rgba(44, 131, 181, 0.8);
 }
 
 table.listado-Plantilla thead th,
 table.listado-Plantilla tbody th {
     margin: 3px;
     height: 2.5em;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(101, 161, 193, 0.704);
     text-transform: uppercase;
 
 }
 
 
 table.listado-Plantilla tbody th {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(39, 154, 199, 0.611);
 }
 
 table.listado-Plantilla tbody td {
@@ -38,6 +38,6 @@ table.listado-Plantilla tbody td {
 table.listado-Plantilla tbody tr {
     margin: 3px;
     height: 2em;
-    background-color: rgba(0, 0, 100, 0.1)
+    background-color: rgba(182, 229, 255, 0.441)
 }
 

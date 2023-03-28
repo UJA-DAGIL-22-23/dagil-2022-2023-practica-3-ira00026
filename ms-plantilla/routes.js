@@ -57,5 +57,16 @@ router.get("/getTodos", async (req, res) => {
     }
 });
 
+/**
+ * Devuelve todos los nombres (motociclistas) que hay en la BBDD
+ */
+router.get("/getNombres", async (req, res) => {
+    try {
+        await callbacks.getNombres(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;
