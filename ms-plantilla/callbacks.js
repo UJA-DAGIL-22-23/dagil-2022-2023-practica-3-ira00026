@@ -111,18 +111,14 @@ getNombres: async (req, res) => {
      * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
      */
 getNAlfabeticamente: async (req, res) => {
-    
     try {
         let motociclistas = await client.query(
             q.Map(
                 q.Paginate(q.Documents(q.Collection(COLLECTION))),
-                q.Lambda("X", q.Select(["data"], q.Get(q.Var("X"))))
-            ),
-            { events: true }
+                q.Lambda("X", q.Select(["data", "nombre"], q.Get(q.Var("X"))))
+            )
         )
-        motociclistas.data.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Ordena por el campo "nombre"
         
-        console.log(motociclistas)
         CORS(res)
             .status(200)
             .json(motociclistas)

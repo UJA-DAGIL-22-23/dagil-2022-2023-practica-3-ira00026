@@ -329,7 +329,7 @@ Plantilla.recuperaNombresAZ = async function (callBackFn) {
     let vectorPlantilla = null
     if (response) {
         vectorPlantilla = await response.json()
-        callBackFn(vectorPlantilla.data)
+        callBackFn(vectorPlantilla.data.sort())
     }
 }
 
