@@ -371,11 +371,11 @@ Plantilla.cabeceraTableNAZ = function () {
  * @param {motociclistas} m Datos del motociclista a mostrar
  * @returns Cadena conteniendo todo el elemento TR que muestra el proyecto.
  */
-Plantilla.cuerpoTrNAZ = function (NAZ) {
+Plantilla.cuerpoTrNAZ = function (nombre) {
 
     return `
     <tr">
-    <td>${NAZ}</td>
+    <td>${nombre}</td>
 
     </tr>
     `;
