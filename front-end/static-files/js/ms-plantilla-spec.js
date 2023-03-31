@@ -123,6 +123,52 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
+describe("Plantilla.recupera", function () {
+// TDD RECUPERA GETTODOS
+beforeEach(() => {
+    spyOn(window, 'alert')
+    spyOn(console, 'error')
+})
+
+it("llama al API Gateway para obtener todos los datos y ejecuta la función callback",
+    async function () {
+        // Mock del resultado del fetch
+        const respuestaMock = {
+            json: function () { return { data: [datosDescargadosPrueba] } }
+        }
+        spyOn(window, 'fetch').and.returnValue(Promise.resolve(respuestaMock))
+
+        // Mock de la función callback
+        const callBackFn = jasmine.createSpy("callBackFn")
+
+        // Ejecutar la función a probar
+        await Plantilla.recupera(callBackFn)
+
+        // Verificaciones
+        expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+        expect(callBackFn).toHaveBeenCalledWith([datosDescargadosPrueba])
+        expect(window.alert).not.toHaveBeenCalled()
+        expect(console.error).not.toHaveBeenCalled()
+    })
+
+it("muestra un mensaje de error si no se puede acceder al API Gateway",
+    async function () {
+        // Mock del resultado del fetch
+        spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+
+        // Mock de la función callback
+        const callBackFn = jasmine.createSpy("callBackFn")
+
+        // Ejecutar la función a probar
+        await Plantilla.recupera(callBackFn)
+
+        // Verificaciones
+        expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+        expect(callBackFn).not.toHaveBeenCalled()
+        expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+        expect(console.error).toHaveBeenCalled()
+    })
+})
 
 /*
 IMPORTANTE

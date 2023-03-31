@@ -339,7 +339,7 @@ Plantilla.recuperaNombresAZ = async function (callBackFn) {
  * @param {Vector_de_motociclistas} vector Vector con los datos de los motociclistas a mostrar
  */
 Plantilla.imprimeNAZ = function (vector) {
-    //console.log( vector ) // Para comprobar lo que hay en vector
+    console.log( vector ) // Para comprobar lo que hay en vector
     let msj = "";
     msj += Plantilla.cabeceraTableNAZ();
     vector.forEach(e => msj += Plantilla.cuerpoTrNAZ(e))
