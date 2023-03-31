@@ -12,6 +12,7 @@ const elementoTitulo = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_TIT
 const elementoContenido = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_CONTENIDO)
 const TITULO_HOME = "Plantilla Home"
 const TITULO_ACERCA_DE = "Plantilla Acerca de"
+const TITULO_IMPRIME = "Listado de motociclistas"
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
@@ -169,6 +170,16 @@ it("muestra un mensaje de error si no se puede acceder al API Gateway",
         expect(console.error).toHaveBeenCalled()
     })
 })
+
+// TDD RECUPERA GETTODOS
+describe("Plantilla.imprime", function () {
+    it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
+    function () {
+        Plantilla.imprime([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
+    })
+})
+    
 
 /*
 IMPORTANTE
