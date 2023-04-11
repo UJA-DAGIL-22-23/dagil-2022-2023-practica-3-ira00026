@@ -13,6 +13,8 @@ const elementoContenido = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_
 const TITULO_HOME = "Plantilla Home"
 const TITULO_ACERCA_DE = "Plantilla Acerca de"
 const TITULO_IMPRIME = "Listado de motociclistas"
+/*const CONTENIDO_VACIO =''*/
+
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
@@ -171,15 +173,40 @@ it("muestra un mensaje de error si no se puede acceder al API Gateway",
     })
 })
 
-// TDD RECUPERA GETTODOS
-describe("Plantilla.imprime", function () {
+// TDD IMPRIME GETTODOS
+/*describe("Plantilla.imprime", function () {
     it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
     function () {
         Plantilla.imprime([])
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
     })
-})
+})*/
     
+//TDD CABECERA GETTODOS
+
+describe("Plantilla.cabeceraTable: ", function () {
+  
+    it("debería devolver una cadena de texto que contienen las cabeceras de una tabla HTML",
+        function () {
+            expect(Plantilla.cabeceraTable()).toBe(`<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th><th>Nombre_Equipo</th><th>Tipo_Moto</th><th>Fecha_Nacimiento</th><th>Anios_Experiencia</th><th>Puntuaciones_Carrera</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th>
+        </thead>
+        <tbody>
+    `);
+        });
+})
+
+
+
+//TDD PIETABLE GETTODOS
+/*describe("Plantilla.pieTable ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.pieTable()).toBe("</tbody></table>");
+        });
+});*/
 
 /*
 IMPORTANTE

@@ -201,6 +201,8 @@ Plantilla.pieTable = function () {
     return "</tbody></table>";
 }
 
+/*Plantilla.pieTable= `</tbody></table>`;*/
+
 /**
  * Función principal para recuperar los datos desde el MS y, posteriormente, imprimirlos.
  * @returns True
