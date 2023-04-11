@@ -201,12 +201,12 @@ describe("Plantilla.cabeceraTable: ", function () {
 
 
 //TDD PIETABLE GETTODOS
-/*describe("Plantilla.pieTable ", function () {
+describe("Plantilla.pieTable ", function () {
     it("debería devolver las etiquetas HTML para el pie de tabla",
         function () {
             expect(Plantilla.pieTable()).toBe("</tbody></table>");
         });
-});*/
+});
 
 /*
 IMPORTANTE
