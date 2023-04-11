@@ -196,9 +196,27 @@ describe("Plantilla.cabeceraTable: ", function () {
         <tbody>
     `);
         });
-})
+});
 
+//TDD CUERPO GETTODOS
 
+/*describe("Plantilla.cuerpoTr: ", function () {
+  
+    it("debería devolver una fila de tabla con los datos de un proyecto",
+        function () {
+            expect(Plantilla.cuerpoTr()).toBe(`<tr title="${p.ref['@ref'].id}">
+            <td>${d.nombre}</td>
+            <td><em>${d.nombre_equipo}</em></td>
+            <td>${d.tipo_moto}</td>
+            <td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td>
+            <td>${anios_experiencia}</td>
+            <td>${puntuaciones_carrera}</td>
+            <td>${marcas_motocicletas}</td>
+            <td>${d.posicion_campeonato}</td>
+            </tr>
+            `);
+        });
+});*/
 
 //TDD PIETABLE GETTODOS
 describe("Plantilla.pieTable ", function () {
