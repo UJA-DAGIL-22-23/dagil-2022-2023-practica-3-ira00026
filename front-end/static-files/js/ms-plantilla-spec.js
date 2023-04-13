@@ -277,18 +277,18 @@ describe("Plantilla.recuperaNombres", function () {
         
     //TDD CABECERA GETNOMBRES
     
-    /*describe("Plantilla.cabeceraTable: ", function () {
+    describe("Plantilla.cabeceraTableN: ", function () {
       
         it("debería devolver una cadena de texto que contienen las cabeceras de una tabla HTML",
             function () {
-                expect(Plantilla.cabeceraTable()).toBe(`<table class="listado-Plantilla">
-            <thead>
-            <th>Nombre</th><th>Nombre_Equipo</th><th>Tipo_Moto</th><th>Fecha_Nacimiento</th><th>Anios_Experiencia</th><th>Puntuaciones_Carrera</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th>
-            </thead>
-            <tbody>
-        `);
+                expect(Plantilla.cabeceraTableN()).toBe(`<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `);
             });
-    });*/
+    });
     
     //TDD CUERPO GETNOMBRES
     
