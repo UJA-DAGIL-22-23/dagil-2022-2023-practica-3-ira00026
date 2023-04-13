@@ -301,12 +301,12 @@ describe("Plantilla.recuperaNombres", function () {
     });*/
     
     //TDD PIETABLE GETNOMBRES
-    /*describe("Plantilla.pieTable ", function () {
+    describe("Plantilla.pieTableN ", function () {
         it("debería devolver las etiquetas HTML para el pie de tabla",
             function () {
-                expect(Plantilla.pieTable()).toBe("</tbody></table>");
+                expect(Plantilla.pieTableN()).toBe("</tbody></table>");
             });
-    });*/
+    });
 
 
 /*
