@@ -200,12 +200,33 @@ describe("Plantilla.cabeceraTable: ", function () {
 
 //TDD CUERPO GETTODOS
 
-/*describe("Plantilla.cuerpoTr: ", function () {
-  
-    it("debería devolver una fila de tabla con los datos de un proyecto",
-        function () {
-            expect(Plantilla.cuerpoTr()).toBe(`<tr title="${p.ref['@ref'].id}"><td>${d.nombre}</td><td><em>${d.nombre_equipo}</em></td><td>${d.tipo_moto}</td><td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td><td>${anios_experiencia}</td><td>${puntuaciones_carrera}</td><td>${marcas_motocicletas}</td><td>${d.posicion_campeonato}</td></tr>`);
-        });
+/*describe("Plantilla.cuerpoTr", function () {
+    it("genera correctamente la plantilla HTML", function () {
+        // Preparar datos de prueba
+        let p = {
+            ref: {
+                "@ref": {
+                    id: "ref motociclista 1"
+                }
+            },
+            data: {
+                nombre: "Nombre motociclista 1",
+                nombrequipo: "Equipo motociclista 1",
+                nombrequipo: "Tipo de moto motociclista 1",
+                fechaNacimiento: { dia: 1, mes: 1, anio: 2000 },
+                aniosExperiencia: [2002, 2003],
+                puntuacionesCarrera: [25, 20],
+                marcasMotocicletas: [Aprilia, Honda],
+                posicionCampeonato: 23
+                
+            }
+        };
+
+        let resultado = Plantilla.cuerpoTr(p);
+
+        let esperado = `<tr><td>ref motociclista 1</td><td>Nombre motociclista 1</td><td>Equipo motociclista 1</td><td>Tipo de moto motociclista 1</td><td>1/1/2000</td><td>2002,2003</td><td>25,20</td><td>Aprilia, Honda</td><td>23</td><td><div><a href="javascript:Plantilla.mostrarMotociclista('ref motociclista 1')"">Mostrar</a></div></td></tr>`;
+        expect(resultado).toEqual(esperado);
+    });
 });*/
 
 //TDD PIETABLE GETTODOS
