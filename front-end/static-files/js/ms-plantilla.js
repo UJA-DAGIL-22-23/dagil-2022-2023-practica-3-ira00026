@@ -399,3 +399,31 @@ Plantilla.pieTableNAZ = function () {
 Plantilla.listarNombresAZ = function () {
   this.recuperaNombresAZ(this.imprimeNAZ);
 }
+//FUNCION BUSCAR POR PARAMETROS
+/*Plantilla.recuperaBuscar = async function (callBackFn, nombre) {
+    let response = null
+
+    //console.log(nombre)
+    // Intento conectar con el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Filtro los datos del vector  para obtener solo el que tiene el nombre pasado como parámetro
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        const filtro = vectorPlantilla.data.filter(Plantilla.data.nombre === nombre)
+        callBackFn(filtro)
+    }
+}
+
+Plantilla.listarBuscar = function (search) {
+    this.recuperaBuscar(this.imprime,search)
+}*/
