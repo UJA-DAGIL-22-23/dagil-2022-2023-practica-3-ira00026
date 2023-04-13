@@ -200,13 +200,13 @@ describe("Plantilla.cabeceraTable: ", function () {
 
 //TDD CUERPO GETTODOS
 
-describe("Plantilla.cuerpoTr: ", function () {
+/*describe("Plantilla.cuerpoTr: ", function () {
   
     it("debería devolver una fila de tabla con los datos de un proyecto",
         function () {
             expect(Plantilla.cuerpoTr()).toBe(`<tr title="${p.ref['@ref'].id}"><td>${d.nombre}</td><td><em>${d.nombre_equipo}</em></td><td>${d.tipo_moto}</td><td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td><td>${anios_experiencia}</td><td>${puntuaciones_carrera}</td><td>${marcas_motocicletas}</td><td>${d.posicion_campeonato}</td></tr>`);
         });
-});
+});*/
 
 //TDD PIETABLE GETTODOS
 describe("Plantilla.pieTable ", function () {
@@ -215,6 +215,99 @@ describe("Plantilla.pieTable ", function () {
             expect(Plantilla.pieTable()).toBe("</tbody></table>");
         });
 });
+
+//TDD METODO : SOLO NOMBRES (GETNOMBRES)
+
+describe("Plantilla.recuperaNombres", function () {
+    // TDD RECUPERA GETNOMBRES
+    beforeEach(() => {
+        spyOn(window, 'alert')
+        spyOn(console, 'error')
+    })
+    
+    it("llama al API Gateway para obtener todos los datos y ejecuta la función callback",
+        async function () {
+            // Mock del resultado del fetch
+            const respuestaMock = {
+                json: function () { return { data: [datosDescargadosPrueba] } }
+            }
+            spyOn(window, 'fetch').and.returnValue(Promise.resolve(respuestaMock))
+    
+            // Mock de la función callback
+            const callBackFn = jasmine.createSpy("callBackFn")
+    
+            // Ejecutar la función a probar
+            await Plantilla.recuperaNombres(callBackFn)
+    
+            // Verificaciones
+            expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getNombres")
+            expect(callBackFn).toHaveBeenCalledWith([datosDescargadosPrueba])
+            expect(window.alert).not.toHaveBeenCalled()
+            expect(console.error).not.toHaveBeenCalled()
+        })
+    
+    it("muestra un mensaje de error si no se puede acceder al API Gateway",
+        async function () {
+            // Mock del resultado del fetch
+            spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+    
+            // Mock de la función callback
+            const callBackFn = jasmine.createSpy("callBackFn")
+    
+            // Ejecutar la función a probar
+            await Plantilla.recuperaNombres(callBackFn)
+    
+            // Verificaciones
+            expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getNombres")
+            expect(callBackFn).not.toHaveBeenCalled()
+            expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+            expect(console.error).toHaveBeenCalled()
+        })
+    })
+    
+    // TDD IMPRIME GETNOMBRES
+    /*describe("Plantilla.imprime", function () {
+        it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
+        function () {
+            Plantilla.imprime([])
+            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
+            expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
+        })
+    })*/
+        
+    //TDD CABECERA GETNOMBRES
+    
+    /*describe("Plantilla.cabeceraTable: ", function () {
+      
+        it("debería devolver una cadena de texto que contienen las cabeceras de una tabla HTML",
+            function () {
+                expect(Plantilla.cabeceraTable()).toBe(`<table class="listado-Plantilla">
+            <thead>
+            <th>Nombre</th><th>Nombre_Equipo</th><th>Tipo_Moto</th><th>Fecha_Nacimiento</th><th>Anios_Experiencia</th><th>Puntuaciones_Carrera</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th>
+            </thead>
+            <tbody>
+        `);
+            });
+    });*/
+    
+    //TDD CUERPO GETNOMBRES
+    
+    /*describe("Plantilla.cuerpoTr: ", function () {
+      
+        it("debería devolver una fila de tabla con los datos de un proyecto",
+            function () {
+                expect(Plantilla.cuerpoTr()).toBe(`<tr title="${p.ref['@ref'].id}"><td>${d.nombre}</td><td><em>${d.nombre_equipo}</em></td><td>${d.tipo_moto}</td><td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td><td>${anios_experiencia}</td><td>${puntuaciones_carrera}</td><td>${marcas_motocicletas}</td><td>${d.posicion_campeonato}</td></tr>`);
+            });
+    });*/
+    
+    //TDD PIETABLE GETNOMBRES
+    /*describe("Plantilla.pieTable ", function () {
+        it("debería devolver las etiquetas HTML para el pie de tabla",
+            function () {
+                expect(Plantilla.pieTable()).toBe("</tbody></table>");
+            });
+    });*/
+
 
 /*
 IMPORTANTE
