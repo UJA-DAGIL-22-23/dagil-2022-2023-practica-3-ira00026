@@ -463,7 +463,7 @@ Plantilla.plantillaTablaMotociclistas.pie = `        </tbody>
  */           
 Plantilla.sustituyeTags = function (plantilla, persona) {
     return plantilla
-        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.ref['@ref'].id)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_EQUIPO, 'g'), persona.data.nombre_equipo)
         .replace(new RegExp(Plantilla.plantillaTags.TIPO_MOTO, 'g'), persona.data.tipo_moto)
         .replace(new RegExp(Plantilla.plantillaTags["FECHA_NACIMIENTO"], 'g'), persona.data.fecha_nacimiento)
@@ -480,7 +480,28 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
  */
 Plantilla.plantillaTablaMotociclistas.actualiza = function (persona) {
-    return Personas.sustituyeTags(this.cuerpo, persona)
+    return Plantilla.sustituyeTags(this.cuerpo, persona)
+}
+
+Plantilla.recuperapersonaBuscar = async function (nombreBuscar,callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        const response = await fetch(url);
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.nombre === nombre)
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+
+    }
+
 }
 
 /**
@@ -500,35 +521,9 @@ Plantilla.imprimeTodosMotociclistas = function (vector) {
     Frontend.Article.actualizar("Listado de motocilistas", msj)
 }
 
+
 Plantilla.personaBuscar = function (nombreBuscar){
     this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
-}
-
-Plantilla.recuperapersonaBuscar = async function (callBackFn) {
-
-    // Intento conectar con el microservicio proyectos
-    try {
-        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
-        response = await fetch(url)
-        let vectorPlantilla = null
-        if (response) {
-            vectorPlantilla = await response.json()
-            const filtro = vectorPlantilla.data.filter(Plantilla.data.nombre === nombre)
-            callBackFn(filtro)
-        }
-
-    } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
-        console.error(error)
-        //throw error
-    }
-
-    // Muestro todos los proyectos que se han descargado
-    let vectorPlantilla = null
-    if (response) {
-        vectorPlantilla = await response.json()
-        callBackFn(vectorPlantilla.data)
-    }
 }
 
 /**
