@@ -32,8 +32,12 @@
             title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Motociclistas</a>
         <a href="javascript:Plantilla.listarNombresAZ()" class="opcion-principal mostrar"
             title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Aa-Zz Motociclistas</a>
+        <!-- <a href="javascript:Plantilla.listarDATOSUNCRITERIO()" class="opcion-principal mostrar"
+            title="Realiza un listado de los datos de los motociclistas que hay en la BBDD que cumplen un criterio de busqueda">Listar Datos Motociclistas Que Cumplen 1 criterio de Busqueda</a>
+            -->
     </nav>
-
+    </nav>
+   
     <!-- 
         Article en el que se va a mostrar la info cuando se pinche una opción del menú 
         Todos los apartados de este article se rellenarán con funciones en Javascript
@@ -45,9 +49,12 @@
         <div id="seccion-principal-contenido">
             <!--<div id="tabla-listado-Plantilla"> -->
         </div>
+        <input type="text" id="campo-busqueda">
+        <button class="button" onclick="Plantilla.personaBuscar(document.getElementById('campo-busqueda').value)">Buscar por nombre/button> 
     </article>
 
     
+
     <!-- 
         ...............  ZONA DE CARGA DE FICHEROS JS .........................
     

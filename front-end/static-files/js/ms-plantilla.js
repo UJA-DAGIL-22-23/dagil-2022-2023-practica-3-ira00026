@@ -109,6 +109,7 @@ Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
 
+//HU 04 : Ver un listado con todos los datos de todos los jugadores/equipos.
 
 /**
  * Función que recuperar todos los datos llamando al MS Plantilla
@@ -212,6 +213,8 @@ Plantilla.listar = function () {
   this.recupera(this.imprime);
 }
 
+
+//HU 02 : Ver un listado solo con los nombres de todos los jugadores/equipos.
 // REALIZAMOS LA OPCIÓN DE MOSTRAR SOLO NOMBRES
 
 /**
@@ -306,7 +309,7 @@ Plantilla.listarNombres = function () {
 }
 
 
-
+//HU 03 : Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente.
 // REALIZAMOS LA OPCIÓN DE MOSTRAR NOMBRES POR RORDEN ALFABÉTICO
 
 /**
@@ -399,6 +402,145 @@ Plantilla.pieTableNAZ = function () {
 Plantilla.listarNombresAZ = function () {
   this.recuperaNombresAZ(this.imprimeNAZ);
 }
+
+//HU 08 : Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario. (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
+
+// Tags que voy a usar para sustituir los campos
+Plantilla.plantillaTags = {
+    "NOMBRE": "### NOMBRE ###",
+    "NOMBRE_EQUIPO": "### NOMBRE_EQUIPO ###",
+    "TIPO_MOTO": "### TIPO_MOTO ###",
+    "FECHA_NACIMIENTO": "### FECHA_NACIMIENTO ###",
+    "ANIOS_EXPERIENCIA": "### ANIOS_EXPERIENCIA ###",
+    "PUNTUACIONES_CARRERA": "### PUNTUACIONES_CARRERA ###",
+    "MARCAS_MOTOCICLETAS": "### MARCAS_MOTOCICLETAS ###",
+    "POSICION_CAMPEONATO": "### POSICION_CAMPEONATO ###",
+}
+/// Plantilla para poner los datos de varias personas dentro de una tabla
+Plantilla.plantillaTablaMotociclistas = {}
+
+
+// Cabecera de la tabla
+Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="listado-motociclistas">
+                    <thead>
+                        <th width="10%">Nombre</th>
+                        <th width="20%">Nombre_Equipo</th>
+                        <th width="20%">Tipo_Moto</th>
+                        <th width="10%">Fecha_Nacimiento</th>
+                        <th width="15%">Anios_Experiencia</th>
+                        <th width="15%">Puntuaciones_Carrera</th>
+                        <th width="15%">Marcas_Motociletas</th>
+                        <th width="15%">Posicion_Campeonato</th>
+                    </thead>
+                    <tbody>
+    `;
+
+// Elemento TR que muestra los datos de una persona
+Plantilla.plantillaTablaMotociclistas.cuerpo = `
+    <tr title="${Plantilla.plantillaTags.NOMBRE}">
+        <td>${Plantilla.plantillaTags.NOMBRE_EQUIPO}</td>
+        <td>${Plantilla.plantillaTags.TIPO_MOTO}</td>
+        <td>${Plantilla.plantillaTags["FECHA_NACIMIENTO"]}</td>
+        <td>${Plantilla.plantillaTags["ANIOS_EXPERIENCIA"]}</td>
+        <td>${Plantilla.plantillaTags["PUNTUACIONES_CARRERA"]}</td>
+        <td>${Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"]}</td>
+        <td>${Plantilla.plantillaTags.POSICION_CAMPEONATO}</td>
+       
+    </tr>
+    `;
+
+// Pie de la tabla
+Plantilla.plantillaTablaMotociclistas.pie = `        </tbody>
+             </table>
+             `;
+
+
+/**
+ * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
+ * @param {String} Plantilla Cadena conteniendo HTML en la que se desea cambiar lso campos de la plantilla por datos
+ * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
+ */           
+Plantilla.sustituyeTags = function (plantilla, persona) {
+    return plantilla
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.ref['@ref'].id)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_EQUIPO, 'g'), persona.data.nombre_equipo)
+        .replace(new RegExp(Plantilla.plantillaTags.TIPO_MOTO, 'g'), persona.data.tipo_moto)
+        .replace(new RegExp(Plantilla.plantillaTags["FECHA_NACIMIENTO"], 'g'), persona.data.fecha_nacimiento)
+        .replace(new RegExp(Plantilla.plantillaTags["ANIOS_EXPERIENCIA"], 'g'), persona.data.anios_experiencia)
+        .replace(new RegExp(Plantilla.plantillaTags["PUNTUACIONES_CARRERA"], 'g'), persona.data.puntuaciones_carrera)
+        .replace(new RegExp(Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"], 'g'), persona.data.marcas_motocicletas)
+        .replace(new RegExp(Plantilla.plantillaTags.POSICION_CAMPEONATO, 'g'), persona.data.posicion_campeonato)
+        
+}
+
+/**
+ * Actualiza el cuerpo de la tabla con los datos de la persona que se le pasa
+ * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
+ */
+Plantilla.plantillaTablaMotociclistas.actualiza = function (persona) {
+    return Personas.sustituyeTags(this.cuerpo, persona)
+}
+
+/**
+ * Función para mostrar en pantalla todas las personas que se han recuperado de la BBDD.
+ * @param {Vector_de_personas} vector Vector con los datos de las personas a mostrar
+ */
+
+Plantilla.imprimeTodosMotociclistas = function (vector) {
+    // console.log(vector) // Para comprobar lo que hay en vector
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaMotociclistas.cabecera
+    vector.forEach(e => msj += Plantilla.plantillaTablaMotociclistas.actualiza(e))
+    msj += Plantilla.plantillaTablaMotociclistas.pie
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listado de motocilistas", msj)
+}
+
+Plantilla.personaBuscar = function (nombreBuscar){
+    this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
+}
+
+Plantilla.recuperapersonaBuscar = async function (callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(Plantilla.data.nombre === nombre)
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los proyectos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data)
+    }
+}
+
+/**
+ * Función principal para recuperar los nombres por orden alfabético de los motociclistas desde el MS y, posteriormente, imprimirlos.
+ * @returns True
+ */
+
+/*Plantilla.listarDATOSUNCRITERIO = function () {
+    this.recuperapersonaBuscar(this.imprimeTodosMotociclistas);
+  }*/
+
+
 //FUNCION BUSCAR POR PARAMETROS
 /*Plantilla.recuperaBuscar = async function (callBackFn, nombre) {
     let response = null
