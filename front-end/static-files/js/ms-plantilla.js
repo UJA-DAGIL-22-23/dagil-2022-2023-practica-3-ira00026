@@ -492,7 +492,7 @@ Plantilla.recuperapersonaBuscar = async function (nombreBuscar,callBackFn) {
         let vectorPlantilla = null
         if (response) {
             vectorPlantilla = await response.json()
-            const filtro = vectorPlantilla.data.filter(persona => persona.data.nombre === nombre)
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.nombre === nombreBuscar)
             callBackFn(filtro)
         }
 
