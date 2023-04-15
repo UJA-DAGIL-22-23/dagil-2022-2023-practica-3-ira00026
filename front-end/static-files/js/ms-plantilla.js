@@ -202,7 +202,6 @@ Plantilla.pieTable = function () {
     return "</tbody></table>";
 }
 
-/*Plantilla.pieTable= `</tbody></table>`;*/
 
 /**
  * Función principal para recuperar los datos desde el MS y, posteriormente, imprimirlos.
@@ -424,13 +423,13 @@ Plantilla.plantillaTablaMotociclistas = {}
 Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="listado-motociclistas">
                     <thead>
                         <th width="10%">Nombre</th>
-                        <th width="20%">Nombre_Equipo</th>
-                        <th width="20%">Tipo_Moto</th>
+                        <th width="10%">Nombre_Equipo</th>
+                        <th width="10%">Tipo_Moto</th>
                         <th width="10%">Fecha_Nacimiento</th>
-                        <th width="15%">Anios_Experiencia</th>
-                        <th width="15%">Puntuaciones_Carrera</th>
-                        <th width="15%">Marcas_Motociletas</th>
-                        <th width="15%">Posicion_Campeonato</th>
+                        <th width="10%">Anios_Experiencia</th>
+                        <th width="10%">Puntuaciones_Carrera</th>
+                        <th width="10%">Marcas_Motociletas</th>
+                        <th width="10%">Posicion_Campeonato</th>
                     </thead>
                     <tbody>
     `;
@@ -438,6 +437,7 @@ Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="lis
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaMotociclistas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.NOMBRE}">
+        <td>${Plantilla.plantillaTags.NOMBRE}</td>
         <td>${Plantilla.plantillaTags.NOMBRE_EQUIPO}</td>
         <td>${Plantilla.plantillaTags.TIPO_MOTO}</td>
         <td>${Plantilla.plantillaTags["FECHA_NACIMIENTO"]}</td>
@@ -445,7 +445,7 @@ Plantilla.plantillaTablaMotociclistas.cuerpo = `
         <td>${Plantilla.plantillaTags["PUNTUACIONES_CARRERA"]}</td>
         <td>${Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"]}</td>
         <td>${Plantilla.plantillaTags.POSICION_CAMPEONATO}</td>
-       
+        
     </tr>
     `;
 
@@ -521,46 +521,10 @@ Plantilla.imprimeTodosMotociclistas = function (vector) {
     Frontend.Article.actualizar("Listado de motocilistas", msj)
 }
 
-
-Plantilla.personaBuscar = function (nombreBuscar){
-    this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
-}
-
 /**
  * Función principal para recuperar los nombres por orden alfabético de los motociclistas desde el MS y, posteriormente, imprimirlos.
  * @returns True
  */
-
-/*Plantilla.listarDATOSUNCRITERIO = function () {
-    this.recuperapersonaBuscar(this.imprimeTodosMotociclistas);
-  }*/
-
-
-//FUNCION BUSCAR POR PARAMETROS
-/*Plantilla.recuperaBuscar = async function (callBackFn, nombre) {
-    let response = null
-
-    //console.log(nombre)
-    // Intento conectar con el microservicio Plantilla
-    try {
-        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
-        response = await fetch(url)
-
-    } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
-        console.error(error)
-        //throw error
-    }
-
-    // Filtro los datos del vector  para obtener solo el que tiene el nombre pasado como parámetro
-    let vectorPlantilla = null
-    if (response) {
-        vectorPlantilla = await response.json()
-        const filtro = vectorPlantilla.data.filter(Plantilla.data.nombre === nombre)
-        callBackFn(filtro)
-    }
+Plantilla.personaBuscar = function (nombreBuscar){
+    this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
 }
-
-Plantilla.listarBuscar = function (search) {
-    this.recuperaBuscar(this.imprime,search)
-}*/

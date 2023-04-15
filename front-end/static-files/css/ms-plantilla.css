@@ -41,3 +41,34 @@ table.listado-Plantilla tbody tr {
     background-color: rgba(182, 229, 255, 0.441)
 }
 
+/**LISTADO MOTOCILISTAS**/
+
+table.listado-motociclistas {
+    width: 100%;
+    border: 1px solid rgba(44, 131, 181, 0.8);
+}
+
+table.listado-motociclistas thead th,
+table.listado-motociclistas tbody th {
+    margin: 3px;
+    height: 2.5em;
+    background-color: rgba(101, 161, 193, 0.704);
+    text-transform: uppercase;
+
+}
+
+
+table.listado-motociclistas tbody th {
+    background-color: rgba(39, 154, 199, 0.611);
+}
+
+table.listado-motociclistas tbody td {
+    padding: 0.5em;
+    text-align: center;
+}
+
+table.listado-motociclistas tbody tr {
+    margin: 3px;
+    height: 2em;
+    background-color: rgba(182, 229, 255, 0.441)
+}
