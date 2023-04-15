@@ -466,7 +466,7 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_EQUIPO, 'g'), persona.data.nombre_equipo)
         .replace(new RegExp(Plantilla.plantillaTags.TIPO_MOTO, 'g'), persona.data.tipo_moto)
-        .replace(new RegExp(Plantilla.plantillaTags["FECHA_NACIMIENTO"], 'g'), persona.data.fecha_nacimiento)
+        .replace(new RegExp(Plantilla.plantillaTags["FECHA_NACIMIENTO"], 'g'),  persona.data.fecha_nacimiento.dia + "/" + persona.data.fecha_nacimiento.mes + "/" + persona.data.fecha_nacimiento.anio)
         .replace(new RegExp(Plantilla.plantillaTags["ANIOS_EXPERIENCIA"], 'g'), persona.data.anios_experiencia)
         .replace(new RegExp(Plantilla.plantillaTags["PUNTUACIONES_CARRERA"], 'g'), persona.data.puntuaciones_carrera)
         .replace(new RegExp(Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"], 'g'), persona.data.marcas_motocicletas)
