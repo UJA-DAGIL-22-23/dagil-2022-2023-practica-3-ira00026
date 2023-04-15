@@ -540,7 +540,7 @@ Plantilla.recuperaVariosCriterios = async function (Criterio1,Criterio2,Criterio
         let vectorPlantilla = null
         if (response) {
             vectorPlantilla = await response.json()
-            const filtro = vectorPlantilla.data.filter(persona => persona.data.nombre === Criterio1 && persona.data.nombre_equipo === Criterio2 && persona.data.tipo_moto === Criterio3)
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === Criterio1 && persona.data.marcas_motocicletas === Criterio2 && persona.data.puntuaciones_carrera === Criterio3)
             callBackFn(filtro)
         }
 
