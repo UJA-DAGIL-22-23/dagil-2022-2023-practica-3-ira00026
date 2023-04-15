@@ -528,3 +528,33 @@ Plantilla.imprimeTodosMotociclistas = function (vector) {
 Plantilla.personaBuscar = function (nombreBuscar){
     this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
 }
+
+//HU 10 : Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
+
+Plantilla.recuperaVariosCriterios = async function (Criterio1,Criterio2,Criterio3,callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        const response = await fetch(url);
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.nombre === Criterio1 && persona.data.nombre_equipo === Criterio2 && persona.data.tipo_moto === Criterio3)
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+
+    }
+
+}
+/**
+ * Función principal para recuperar los nombres por orden alfabético de los motociclistas desde el MS y, posteriormente, imprimirlos.
+ * @returns True
+ */
+Plantilla.BuscarVariosCriterios = function (nombreBuscar){
+    this.recuperaVariosCriterios(nombreBuscar, this.imprimeTodosMotociclistas);
+}

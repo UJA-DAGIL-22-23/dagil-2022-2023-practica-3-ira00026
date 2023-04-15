@@ -58,9 +58,9 @@ table.listado-motociclistas tbody th {
 }
 
 
-table.listado-motociclistas tbody th {
+/**table.listado-motociclistas tbody th {
     background-color: rgba(39, 154, 199, 0.611);
-}
+}**/
 
 table.listado-motociclistas tbody td {
     padding: 0.5em;
@@ -71,4 +71,14 @@ table.listado-motociclistas tbody tr {
     margin: 3px;
     height: 2em;
     background-color: rgba(182, 229, 255, 0.441)
+}
+table.listado-motociclistas thead,
+table.listado-motociclistas tbody,
+table.listado-motociclistas tr,
+table.listado-motociclistas td {
+    text-align: center;
+    margin: 0 auto 0 auto;
+}
+table.listado-motociclistas {
+    width: 100%;
 }
