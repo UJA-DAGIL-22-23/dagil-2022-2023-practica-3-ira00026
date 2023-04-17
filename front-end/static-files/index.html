@@ -52,7 +52,7 @@
          
     </article>
 <!--HU 08-->
-    <form> 
+   <form> 
         <label>Buscar por nombre completo:</label> 
     <input type="text" id="search" name="search">
     <button type="button" onclick="Buscar()"> BUSCAR DATOS </button>
@@ -65,6 +65,7 @@
 
 <!--HU 10-->
 
+
 <form>
     <label> Tipo de moto : </label>
     <input type="text" id="criterio1" name="criterio1">
@@ -75,31 +76,19 @@
     <label> Posición en el campeonato: </label>
     <input type="text" id="criterio3" name="criterio3">
     <br>
-<button type="button" onclick="Buscar()">BUSCAR MOTOCILISTA/S</button>
+<button type="button" onclick="BuscarCriterios()">BUSCAR MOTOCILISTA/S</button>
+<!--<button type="button" onclick="Plantilla.BuscarVariosCriterios(document.getElementById('criterio1').value,document.getElementById('criterio2').value,document.getElementById('criterio3').value)">BUSCAR MOTOCILISTA/S</button>-->
 </form>
-<script>function Buscar(){
-    var criterio1 = document.getElementById("criterio1").value;
-    var criterio2 = document.getElementById("criterio2").value;
-    var criterio3 = document.getElementById("criterio3").value;
-    Plantilla.BuscarVariosCriterios(criterio1,criterio2,criterio3);
+
+<script>function BuscarCriterios(){
+    var criterio1term = document.getElementById('criterio1').value;
+    var criterio2term = document.getElementById('criterio2').value;
+    var criterio3term = document.getElementById('criterio3').value;
+    Plantilla.BuscarVariosCriterios(criterio1term,criterio2term,criterio3term);
 }
 </script>
 
-<!--
-<form> 
-    <label>Buscar por TIPO DE MOTO:</label> 
-    <label>Buscar por MARCA MOTO:</label> 
-    <label>Buscar por POSICION CAMPEONATO:</label> 
-<input type="text" id="search1" name="search1">
-<input type="text" id="search2" name="search2">
-<input type="text" id="search3" name="search3">
-<button type="button" onclick="Buscar()"> BUSCAR DATOS </button>
-</form>
-<script>function Buscar(){
-    var searchTerm = document.getElementById("search1","search2","search3").value;
-    Plantilla.BuscarVariosCriterios(searchTerm);
-}
-</script>-->
+
 
     <!-- 
         ...............  ZONA DE CARGA DE FICHEROS JS .........................

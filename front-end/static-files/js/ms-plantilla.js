@@ -541,6 +541,7 @@ Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio
         if (response) {
             vectorPlantilla = await response.json()
             const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1 && persona.data.marcas_motocicletas === criterio2 && persona.data.posicion_campeonato === criterio3)
+            
             callBackFn(filtro)
         }
 
@@ -558,6 +559,7 @@ Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio
  * @param {string} criterio3 - Tercer criterio de búsqueda.
  * @returns {boolean} - Retorna verdadero.
  */
-Plantilla.BuscarVariosCriterios = function (criterio1,criterio2,criterio3){
-    this.recuperaVariosCriterios(criterio1,criterio2,criterio3, this.imprimeTodosMotociclistas);
+Plantilla.BuscarVariosCriterios = function (criterio1, criterio2, criterio3){
+    this.recuperaVariosCriterios(criterio1, criterio2, criterio3, this.imprimeTodosMotociclistas);
+
 }
