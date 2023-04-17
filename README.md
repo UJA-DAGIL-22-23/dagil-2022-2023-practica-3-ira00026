@@ -257,6 +257,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 ```
 **Historias de usuario elegidas a implementar en mi aplicación de microservicios: **
 
+## HU 02:
 02. Ver un listado solo con los nombres de todos los jugadores/equipos.
 Para esta HU, he implementado el método : "getNombres".
 
@@ -371,6 +372,7 @@ Plantilla.listarNombres = function () {
 ## Captura "HU 02":
 ![Captura tablaGETNOMBRES](./assets/img/tablaGETNOMBRES.jpg)
 
+## HU 03:
 03. Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente. 
 Para esta HU, he implementado el método : "getNAlfabeticamente".
 
@@ -483,6 +485,7 @@ Plantilla.listarNombresAZ = function () {
 ## Captura "HU 03":
 ![Captura tablaGETNOMBRESAZ](./assets/img/tablaGETNOMBRESAZ.jpg)
 
+## HU 04:
 04. Ver un listado con todos los datos de todos los jugadores/equipos
 Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
 
@@ -608,7 +611,7 @@ Plantilla.listar = function () {
 ## Captura "HU 04":
 ![Captura tablaGETTODOS](./assets/img/tablaGETTODOS.jpg)
 
-
+## HU 08:
 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
 En esta HU he utilizado el método: getTodos.
@@ -738,12 +741,96 @@ Plantilla.personaBuscar = function (nombreBuscar){
 ```
 
 ## Captura "HU 08":
-![Captura buscarnombre](./assets/img/buscarnombre.png)
 ![Captura resultadobuscarnombre](./assets/img/resultadobuscarnombre.png)
+![Captura buscarnombre](./assets/img/buscarnombre.png)
+
 
 10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 
+# *TDD de funciones*: 
+
+En esta sección se muestran ejemplos los TDD implementados para las funciones implementadas de la aplicación de microservicios, se pondrá un ejemplo de cada tipo de función, es decir, si hay varias funciones del tipo "recupera", se pondrá un ejemplo para visualizar la implementación que se ha usado en todas aquellas funciones que son similares, para tener una ligera idea y no añadir tanto texto:
+
+## Función "Plantilla.recupera":
+
+```
+describe("Plantilla.recupera", function () {
+// TDD RECUPERA GETTODOS
+beforeEach(() => {
+    spyOn(window, 'alert')
+    spyOn(console, 'error')
+})
+
+it("llama al API Gateway para obtener todos los datos y ejecuta la función callback",
+    async function () {
+        // Mock del resultado del fetch
+        const respuestaMock = {
+            json: function () { return { data: [datosDescargadosPrueba] } }
+        }
+        spyOn(window, 'fetch').and.returnValue(Promise.resolve(respuestaMock))
+
+        // Mock de la función callback
+        const callBackFn = jasmine.createSpy("callBackFn")
+
+        // Ejecutar la función a probar
+        await Plantilla.recupera(callBackFn)
+
+        // Verificaciones
+        expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+        expect(callBackFn).toHaveBeenCalledWith([datosDescargadosPrueba])
+        expect(window.alert).not.toHaveBeenCalled()
+        expect(console.error).not.toHaveBeenCalled()
+    })
+
+it("muestra un mensaje de error si no se puede acceder al API Gateway",
+    async function () {
+        // Mock del resultado del fetch
+        spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+
+        // Mock de la función callback
+        const callBackFn = jasmine.createSpy("callBackFn")
+
+        // Ejecutar la función a probar
+        await Plantilla.recupera(callBackFn)
+
+        // Verificaciones
+        expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+        expect(callBackFn).not.toHaveBeenCalled()
+        expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+        expect(console.error).toHaveBeenCalled()
+    })
+})
+
+```
+
+## Función "Plantilla.cabeceraTable":
+```
+describe("Plantilla.cabeceraTable: ", function () {
+  
+    it("debería devolver una cadena de texto que contienen las cabeceras de una tabla HTML",
+        function () {
+            expect(Plantilla.cabeceraTable()).toBe(`<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th><th>Nombre_Equipo</th><th>Tipo_Moto</th><th>Fecha_Nacimiento</th><th>Anios_Experiencia</th><th>Puntuaciones_Carrera</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th>
+        </thead>
+        <tbody>
+    `);
+        });
+});
+```
+
+## Función "Plantilla.pieTable":
+
+describe("Plantilla.pieTable ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.pieTable()).toBe("</tbody></table>");
+        });
+});
+
+## Captura TDD  del correcto funcionamiento de las funciones indicadas de los métodos "getTodos,getNombres":
+![Captura tdd1](./assets/img/tdd1.png)
 
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
