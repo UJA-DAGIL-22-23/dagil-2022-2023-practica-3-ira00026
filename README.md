@@ -255,6 +255,104 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 }
 
 ```
+**Historias de usuario elegidas a implementar en mi aplicación de microservicios: **
+
+02. Ver un listado solo con los nombres de todos los jugadores/equipos.
+Para esta HU, he implementado el método : "getNombres".
+Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cuerpoTrN, pieTableN, listarNombres
+
+```
+```
+
+03. Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente. 
+Para esta HU, he implementado el método : "getNAlfabeticamente".
+Compuesto de las funciones: recuperaNombresAZ, imprimeNCompuesto de las funciones: recuperaNombres, imprimeNAZ, cabeceraTableNAZ, cuerpoTrNAZ, pieTableNAZ, listarNombresAZ
+
+```
+
+Plantilla.recuperaNombresAZ = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getNAlfabeticamente"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los datos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data.sort())
+    }
+}
+```
+```
+Plantilla.imprimeNAZ = function (vector) {
+    console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTableNAZ();
+    vector.forEach(e => msj += Plantilla.cuerpoTrNAZ(e))
+    msj += Plantilla.pieTableNAZ();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de NOMBRES Aa-Zz de motociclistas", msj )
+
+}
+```
+```
+Plantilla.cabeceraTableNAZ = function () {
+    return `<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+```
+```
+Plantilla.cuerpoTrNAZ = function (nombre) {
+
+    return `
+    <tr">
+    <td>${nombre}</td>
+
+    </tr>
+    `;
+}
+```
+
+```
+Plantilla.pieTableNAZ = function () {
+    return "</tbody></table>";
+}
+
+```
+```
+
+Plantilla.listarNombresAZ = function () {
+  this.recuperaNombresAZ(this.imprimeNAZ);
+
+```
+
+04. Ver un listado con todos los datos de todos los jugadores/equipos
+Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
+Compuesto de las funciones: recupera, imprime, cabeceraTable, cuerpoTr, pieTable, listar
+
+```
+```
+
+08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
+ (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
+10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
+11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
+
 
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
