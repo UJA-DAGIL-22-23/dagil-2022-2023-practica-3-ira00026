@@ -373,8 +373,8 @@ Plantilla.listarNombresAZ = function () {
 
 ```
 
-## Captura "Nombres ordenados alfabéticamente":
-![Captura tabla GETNOMBRESAZ](./assets/img/tabla GETNOMBRESAZ.jpg)
+## Captura "HU 03":
+![Captura tablaGETNOMBRESAZ](./assets/img/tablaGETNOMBRESAZ.jpg)
 
 04. Ver un listado con todos los datos de todos los jugadores/equipos
 Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
