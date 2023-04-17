@@ -259,10 +259,117 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 
 02. Ver un listado solo con los nombres de todos los jugadores/equipos.
 Para esta HU, he implementado el método : "getNombres".
-Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cuerpoTrN, pieTableN, listarNombres
+
+
+```
+getNombres: async (req, res) => {
+    try {
+        let motociclistas = await client.query(
+            q.Map(
+                q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                q.Lambda("X", q.Select(["data", "nombre"], q.Get(q.Var("X"))))
+            )
+        )
+        
+        CORS(res)
+            .status(200)
+            .json(motociclistas)
+    } catch (error) {
+        CORS(res).status(500).json({ error: error.description })
+    }
+},
 
 ```
 ```
+router.get("/getNombres", async (req, res) => {
+    try {
+        await callbacks.getNombres(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+```
+
+Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cuerpoTrN, pieTableN, listarNombres
+
+```
+
+Plantilla.recuperaNombres = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getNombres"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los datos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data)
+    }
+}
+
+```
+```
+Plantilla.imprimeNombres = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTableN();
+    vector.forEach(e => msj += Plantilla.cuerpoTrN(e))
+    msj += Plantilla.pieTableN();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de NOMBRES de motociclistas", msj )
+
+}
+
+```
+```
+Plantilla.cabeceraTableN = function () {
+    return `<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+```
+```
+Plantilla.cuerpoTrN = function (nombre) {
+   
+    return `
+    <tr">
+    <td>${nombre}</td>
+
+    </tr>
+    `;
+}
+```
+
+```
+Plantilla.pieTableNAZ = function () {
+    return "</tbody></table>";
+}
+
+```
+```
+
+Plantilla.listarNombres = function () {
+  this.recuperaNombres(this.imprimeNombres);
+}
+
+```
+
+## Captura "HU 02":
+![Captura tablaGETNOMBRES](./assets/img/tablaGETNOMBRES.jpg)
 
 03. Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente. 
 Para esta HU, he implementado el método : "getNAlfabeticamente".
@@ -498,11 +605,142 @@ Plantilla.listar = function () {
 }
 
 ```
-## Captura "HU 03":
+## Captura "HU 04":
 ![Captura tablaGETTODOS](./assets/img/tablaGETTODOS.jpg)
+
 
 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
+En esta HU he utilizado el método: getTodos.
+En base a las funciones implementadas para esta HU, me ha servido para las 2 siguientes HU, DICHAS FUNCIONES SON: plantillaTags, plantillaTablaMotociclistas(cabecera, cuerpo y pie de tabla), sustituyeTags, actualiza, recuperapersonaBuscar, imprimeTodosMotociclistas, personaBuscar.
+
+
+```
+// Tags que voy a usar para sustituir los campos
+Plantilla.plantillaTags = {
+    "NOMBRE": "### NOMBRE ###",
+    "NOMBRE_EQUIPO": "### NOMBRE_EQUIPO ###",
+    "TIPO_MOTO": "### TIPO_MOTO ###",
+    "FECHA_NACIMIENTO": "### FECHA_NACIMIENTO ###",
+    "ANIOS_EXPERIENCIA": "### ANIOS_EXPERIENCIA ###",
+    "PUNTUACIONES_CARRERA": "### PUNTUACIONES_CARRERA ###",
+    "MARCAS_MOTOCICLETAS": "### MARCAS_MOTOCICLETAS ###",
+    "POSICION_CAMPEONATO": "### POSICION_CAMPEONATO ###",
+}
+```
+```
+/// Plantilla para poner los datos de varias personas dentro de una tabla
+Plantilla.plantillaTablaMotociclistas = {}
+
+```
+```
+// Cabecera de la tabla
+Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="listado-motociclistas">
+                    <thead>
+                        <th width="10%">Nombre</th>
+                        <th width="10%">Nombre_Equipo</th>
+                        <th width="10%">Tipo_Moto</th>
+                        <th width="10%">Fecha_Nacimiento</th>
+                        <th width="10%">Anios_Experiencia</th>
+                        <th width="10%">Puntuaciones_Carrera</th>
+                        <th width="10%">Marcas_Motociletas</th>
+                        <th width="10%">Posicion_Campeonato</th>
+                    </thead>
+                    <tbody>
+    `;
+```
+```
+// Elemento TR que muestra los datos de una persona
+Plantilla.plantillaTablaMotociclistas.cuerpo = `
+    <tr title="${Plantilla.plantillaTags.NOMBRE}">
+        <td>${Plantilla.plantillaTags.NOMBRE}</td>
+        <td>${Plantilla.plantillaTags.NOMBRE_EQUIPO}</td>
+        <td>${Plantilla.plantillaTags.TIPO_MOTO}</td>
+        <td>${Plantilla.plantillaTags["FECHA_NACIMIENTO"]}</td>
+        <td>${Plantilla.plantillaTags["ANIOS_EXPERIENCIA"]}</td>
+        <td>${Plantilla.plantillaTags["PUNTUACIONES_CARRERA"]}</td>
+        <td>${Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"]}</td>
+        <td>${Plantilla.plantillaTags.POSICION_CAMPEONATO}</td>
+        
+    </tr>
+    `;
+```
+```
+// Pie de la tabla
+Plantilla.plantillaTablaMotociclistas.pie = `        </tbody>
+             </table>
+             `;
+
+```
+```        
+Plantilla.sustituyeTags = function (plantilla, persona) {
+    return plantilla
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_EQUIPO, 'g'), persona.data.nombre_equipo)
+        .replace(new RegExp(Plantilla.plantillaTags.TIPO_MOTO, 'g'), persona.data.tipo_moto)
+        .replace(new RegExp(Plantilla.plantillaTags["FECHA_NACIMIENTO"], 'g'),  persona.data.fecha_nacimiento.dia + "/" + persona.data.fecha_nacimiento.mes + "/" + persona.data.fecha_nacimiento.anio)
+        .replace(new RegExp(Plantilla.plantillaTags["ANIOS_EXPERIENCIA"], 'g'), persona.data.anios_experiencia)
+        .replace(new RegExp(Plantilla.plantillaTags["PUNTUACIONES_CARRERA"], 'g'), persona.data.puntuaciones_carrera)
+        .replace(new RegExp(Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"], 'g'), persona.data.marcas_motocicletas)
+        .replace(new RegExp(Plantilla.plantillaTags.POSICION_CAMPEONATO, 'g'), persona.data.posicion_campeonato)
+        
+}
+```
+```
+Plantilla.plantillaTablaMotociclistas.actualiza = function (persona) {
+    return Plantilla.sustituyeTags(this.cuerpo, persona)
+}
+```
+
+```
+Plantilla.recuperapersonaBuscar = async function (nombreBuscar,callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        const response = await fetch(url);
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.nombre === nombreBuscar)
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+
+    }
+
+}
+
+```
+```
+Plantilla.imprimeTodosMotociclistas = function (vector) {
+    // console.log(vector) // Para comprobar lo que hay en vector
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaMotociclistas.cabecera
+    vector.forEach(e => msj += Plantilla.plantillaTablaMotociclistas.actualiza(e))
+    msj += Plantilla.plantillaTablaMotociclistas.pie
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listado de motocilistas", msj)
+}
+
+```
+```
+Plantilla.personaBuscar = function (nombreBuscar){
+    this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
+}
+
+
+```
+
+## Captura "HU 08":
+![Captura buscarnombre](./assets/img/buscarnombre.jpg)
+![Captura resultadobuscarnombre](./assets/img/resultadobuscarnombre.jpg)
+
 10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 
