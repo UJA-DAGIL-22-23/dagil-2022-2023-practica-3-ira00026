@@ -738,8 +738,8 @@ Plantilla.personaBuscar = function (nombreBuscar){
 ```
 
 ## Captura "HU 08":
-![Captura buscarnombre](./assets/img/buscarnombre.jpg)
-![Captura resultadobuscarnombre](./assets/img/resultadobuscarnombre.jpg)
+![Captura buscarnombre](./assets/img/buscarnombre.png)
+![Captura resultadobuscarnombre](./assets/img/resultadobuscarnombre.png)
 
 10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
