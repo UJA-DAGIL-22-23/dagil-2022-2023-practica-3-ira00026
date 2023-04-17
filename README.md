@@ -266,6 +266,38 @@ Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cue
 
 03. Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente. 
 Para esta HU, he implementado el método : "getNAlfabeticamente".
+
+```
+getNAlfabeticamente: async (req, res) => {
+    try {
+        let motociclistas = await client.query(
+            q.Map(
+                q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                q.Lambda("X", q.Select(["data", "nombre"], q.Get(q.Var("X"))))
+            )
+        )
+        
+        CORS(res)
+            .status(200)
+            .json(motociclistas)
+    } catch (error) {
+        CORS(res).status(500).json({ error: error.description })
+    }
+},
+}
+
+```
+```
+router.get("/getNAlfabeticamente", async (req, res) => {
+    try {
+        await callbacks.getNAlfabeticamente(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+```
+
 Compuesto de las funciones: recuperaNombresAZ, imprimeNCompuesto de las funciones: recuperaNombres, imprimeNAZ, cabeceraTableNAZ, cuerpoTrNAZ, pieTableNAZ, listarNombresAZ
 
 ```
@@ -340,6 +372,9 @@ Plantilla.listarNombresAZ = function () {
   this.recuperaNombresAZ(this.imprimeNAZ);
 
 ```
+
+## Captura "Nombres ordenados alfabéticamente":
+![Captura tabla GETNOMBRESAZ](./assets/img/tabla GETNOMBRESAZ.jpg)
 
 04. Ver un listado con todos los datos de todos los jugadores/equipos
 Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
