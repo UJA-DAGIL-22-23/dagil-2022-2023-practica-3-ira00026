@@ -378,10 +378,128 @@ Plantilla.listarNombresAZ = function () {
 
 04. Ver un listado con todos los datos de todos los jugadores/equipos
 Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
-Compuesto de las funciones: recupera, imprime, cabeceraTable, cuerpoTr, pieTable, listar
+
+```
+getTodos: async (req, res) => {
+    try {
+        let motociclistas = await client.query(
+            q.Map(
+                q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                q.Lambda("X", q.Get(q.Var("X")))
+            )
+        )
+        // console.log( proyectos ) // Para comprobar qué se ha devuelto en proyectos
+        CORS(res)
+            .status(200)
+            .json(motociclistas)
+    } catch (error) {
+       CORS(res).status(500).json({ error: error.description })
+    }
+},
 
 ```
 ```
+router.get("/getTodos", async (req, res) => {
+    try {
+        await callbacks.getTodos(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+```
+
+
+Compuesto de las funciones: recupera, imprime, cabeceraTable, cuerpoTr, pieTable, listar.
+
+```
+
+Plantilla.recupera = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los proyectos que se han descargado
+    let vectorPlantilla = null
+    if (response) {
+        vectorPlantilla = await response.json()
+        callBackFn(vectorPlantilla.data)
+    }
+}
+
+```
+```
+Plantilla.imprime = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTable();
+    vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+    msj += Plantilla.pieTable();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de motociclistas", msj )
+
+}
+
+```
+```
+Plantilla.cabeceraTable = function () {
+    return `<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th><th>Nombre_Equipo</th><th>Tipo_Moto</th><th>Fecha_Nacimiento</th><th>Anios_Experiencia</th><th>Puntuaciones_Carrera</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+```
+```
+Plantilla.cuerpoTr = function (p) {
+    const d = p.data
+    const fecha = d.fecha_nacimiento;
+    const anios_experiencia = d.anios_experiencia.join(', ');
+    const puntuaciones_carrera = d.puntuaciones_carrera.join(', ');
+    const marcas_motocicletas = d.marcas_motocicletas.join(', ');
+
+    return `<tr title="${p.ref['@ref'].id}">
+    <td>${d.nombre}</td>
+    <td><em>${d.nombre_equipo}</em></td>
+    <td>${d.tipo_moto}</td>
+    <td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td>
+    <td>${anios_experiencia}</td>
+    <td>${puntuaciones_carrera}</td>
+    <td>${marcas_motocicletas}</td>
+    <td>${d.posicion_campeonato}</td>
+    </tr>
+    `;
+}
+
+```
+
+```
+Plantilla.pieTable = function () {
+    return "</tbody></table>";
+}
+
+```
+```
+
+Plantilla.listar = function () {
+  this.recupera(this.imprime);
+}
+
+```
+## Captura "HU 03":
+![Captura tablaGETTODOS](./assets/img/tablaGETTODOS.jpg)
 
 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
