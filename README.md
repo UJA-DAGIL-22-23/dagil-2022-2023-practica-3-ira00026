@@ -202,7 +202,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 {
   "nombre": "Alex Rins",
   "nombre_equipo":  "Team Suzuki Ecstar",
-  "tipo_moto": " Suzuki GS X-RR",
+  "tipo_moto": " Suzuki GSX-RR",
   "fecha_nacimiento": {
     "dia": 8,
     "mes": 12,

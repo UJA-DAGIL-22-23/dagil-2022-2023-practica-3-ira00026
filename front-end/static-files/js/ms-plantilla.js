@@ -422,14 +422,14 @@ Plantilla.plantillaTablaMotociclistas = {}
 // Cabecera de la tabla
 Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="listado-motociclistas">
                     <thead>
-                        <th width="10%">Nombre</th>
-                        <th width="10%">Nombre_Equipo</th>
-                        <th width="10%">Tipo_Moto</th>
-                        <th width="10%">Fecha_Nacimiento</th>
-                        <th width="10%">Anios_Experiencia</th>
-                        <th width="10%">Puntuaciones_Carrera</th>
-                        <th width="10%">Marcas_Motociletas</th>
-                        <th width="10%">Posicion_Campeonato</th>
+                        <th>Nombre</th>
+                        <th>Nombre_Equipo</th>
+                        <th>Tipo_Moto</th>
+                        <th>Fecha_Nacimiento</th>
+                        <th>Anios_Experiencia</th>
+                        <th>Puntuaciones_Carrera</th>
+                        <th>Marcas_Motociletas</th>
+                        <th>Posicion_Campeonato</th>
                     </thead>
                     <tbody>
     `;
@@ -529,7 +529,44 @@ Plantilla.personaBuscar = function (nombreBuscar){
     this.recuperapersonaBuscar(nombreBuscar, this.imprimeTodosMotociclistas);
 }
 
+
 //HU 10 : Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
+
+Plantilla.recuperaCumpleVariosCriterios = async function (criterio1,criterio2,criterio3,callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        const response = await fetch(url);
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1 && persona.data.nombre_equipo === criterio2 && persona.data.posicion_campeonato === criterio3)
+            
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+
+    }
+
+}
+/**
+ * Función principal para recuperar los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
+ * @param {string} criterio1 - Primer criterio de búsqueda.
+ * @param {string} criterio2 - Segundo criterio de búsqueda.
+ * @param {string} criterio3 - Tercer criterio de búsqueda.
+ * @returns {boolean} - Retorna verdadero.
+ */
+Plantilla.BuscarCumpleVariosCriterios = function (criterio1, criterio2, criterio3){
+    this.recuperaCumpleVariosCriterios(criterio1, criterio2, criterio3, this.imprimeTodosMotociclistas);
+
+}
+
+
+//HU 11 : Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
 
 Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio3,callBackFn) {
 
@@ -540,7 +577,7 @@ Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio
         let vectorPlantilla = null
         if (response) {
             vectorPlantilla = await response.json()
-            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1 && persona.data.marcas_motocicletas.includes(criterio2) === criterio2 && persona.data.posicion_campeonato === criterio3)
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1 || persona.data.nombre_equipo === criterio2 || persona.data.posicion_campeonato === criterio3)
             
             callBackFn(filtro)
         }
