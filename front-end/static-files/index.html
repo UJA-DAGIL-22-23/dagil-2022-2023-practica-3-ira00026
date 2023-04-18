@@ -4,14 +4,14 @@
 <head>
     <title>Aplicación Microservicios Plantilla</title>
 
-    <!-- Cargamos biblioteca Jasmine 
+    Cargamos biblioteca Jasmine 
 
     <link rel="stylesheet" href="lib/jasmine-4.5.0/jasmine.css">
     <script src="lib/jasmine-4.5.0/jasmine.js"></script>
     <script src="lib/jasmine-4.5.0/jasmine-html.js"></script>
     <script src="lib/jasmine-4.5.0/boot0.js"></script>
     <script src="lib/jasmine-4.5.0/boot1.js"></script>
--->
+
     <!-- Cargamos nuestros CSS -->
     <link rel="stylesheet" href="css/front-end.css">
 
@@ -32,12 +32,16 @@
             title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Motociclistas</a>
         <a href="javascript:Plantilla.listarNombresAZ()" class="opcion-principal mostrar"
             title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Aa-Zz Motociclistas</a>
-        <a href="javascript:Plantilla.BuscarCumpleVariosCriterios()" class="opcion-principal mostrar"
-            title="Realiza un listado de los datos de los motociclistas que hay en la BBDD que cumplen un criterio de busqueda">Listar Datos Motociclistas Que Cumplen varios criterios de Busqueda</a>
            
+        <a href="javascript:Plantilla.mostrar()" class="opcion-principal mostrar"
+            title="Muestra los datos de la persona seleccionada">Mostrar una persona</a>
+     <br>
+         
+
             <!--HU 08-->
         
             <form> 
+                <br>
                 <br>
                 <label>Buscar por nombre completo:</label> 
             <input type="text" id="search" name="search">
@@ -52,6 +56,7 @@
 <!--HU 10-->
 
 <table class="listado-motociclistas">
+    <br>
     <thead>
         <thead>
             <th>Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar</th>
@@ -113,6 +118,7 @@
 
         
         <table class="listado-motociclistas">
+            <br>
         <thead>
             <thead>
                 <th>Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar</th>
@@ -170,6 +176,7 @@
     </nav>
     </nav>
    
+
     <!-- 
         Article en el que se va a mostrar la info cuando se pinche una opción del menú 
         Todos los apartados de este article se rellenarán con funciones en Javascript
@@ -199,11 +206,11 @@
     <script src="js/ms-plantilla.js"></script>
 
 
-    <!-- Cargamos ficheros spec con los tests 
+     Cargamos ficheros spec con los tests 
 
     <script src="js/front-end-spec.js"></script>
     <script src="js/ms-plantilla-spec.js"></script>
--->
+
 </body>
 
 </html>

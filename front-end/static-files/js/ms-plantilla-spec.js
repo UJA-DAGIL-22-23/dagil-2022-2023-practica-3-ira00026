@@ -329,6 +329,115 @@ describe("Plantilla.recuperaNombres", function () {
             });
     });
 
+    //TDD METODO :  NOMBRES ORDENADOS ALFABETICAMENTE (getNAlfabeticamente)
+
+describe("Plantilla.recuperaNombresAZ", function () {
+    // TDD RECUPERA getNAlfabeticamente
+    beforeEach(() => {
+        spyOn(window, 'alert')
+        spyOn(console, 'error')
+    })
+    
+    it("llama al API Gateway para obtener todos los datos y ejecuta la función callback",
+        async function () {
+            // Mock del resultado del fetch
+            const respuestaMock = {
+                json: function () { return { data: [datosDescargadosPrueba] } }
+            }
+            spyOn(window, 'fetch').and.returnValue(Promise.resolve(respuestaMock))
+    
+            // Mock de la función callback
+            const callBackFn = jasmine.createSpy("callBackFn")
+    
+            // Ejecutar la función a probar
+            await Plantilla.recuperaNombresAZ(callBackFn)
+    
+            // Verificaciones
+            expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getNAlfabeticamente")
+            expect(callBackFn).toHaveBeenCalledWith([datosDescargadosPrueba])
+            expect(window.alert).not.toHaveBeenCalled()
+            expect(console.error).not.toHaveBeenCalled()
+        })
+    
+    it("muestra un mensaje de error si no se puede acceder al API Gateway",
+        async function () {
+            // Mock del resultado del fetch
+            spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+    
+            // Mock de la función callback
+            const callBackFn = jasmine.createSpy("callBackFn")
+    
+            // Ejecutar la función a probar
+            await Plantilla.recuperaNombresAZ(callBackFn)
+    
+            // Verificaciones
+            expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getNAlfabeticamente")
+            expect(callBackFn).not.toHaveBeenCalled()
+            expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+            expect(console.error).toHaveBeenCalled()
+        })
+    })
+    
+    // TDD IMPRIME getNAlfabeticamente
+    /*describe("Plantilla.imprime", function () {
+        it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
+        function () {
+            Plantilla.imprime([])
+            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
+            expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
+        })
+    })*/
+        
+    //TDD CABECERA getNAlfabeticamente
+    
+    describe("Plantilla.cabeceraTableN: ", function () {
+      
+        it("debería devolver una cadena de texto que contienen las cabeceras de una tabla HTML",
+            function () {
+                expect(Plantilla.cabeceraTableNAZ()).toBe(`<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `);
+            });
+    });
+    
+    //TDD CUERPO getNAlfabeticamente
+    
+    /**describe("Pruebas para la función cuerpoTrNAZ", () => {
+        it("Debería retornar una cadena vacía si no se proporciona un nombre", () => {
+          expect(Plantilla.cuerpoTrNAZ()).toBe("<tr><td></td></tr>");
+        });
+      
+        it("Debería mostrar un solo nombre en una fila de la tabla", () => {
+          expect(Plantilla.cuerpoTrNAZ("Valentino Rossi")).toBe("<tr><td>Valentino Rossi</td></tr>");
+        });
+      
+        it("Debería mostrar varios nombres en filas ordenadas alfabéticamente", () => {
+          const nombres = ["Jorge Lorenzo", "Valentino Rossi", "Marc Márquez", "Joan Mir", "MaverickViñales", "Fabio Quartararo", "Johann Zarco", "Alex Rins", "Enea Bastianini", "Iker Lecuona"];
+          const expectedOutput = `
+            <tr><td>Alex Rins</td></tr>
+            <tr><td>Enea Bastianini</td></tr>
+            <tr><td>Fabio Quartararo</td></tr>
+            <tr><td>Iker Lecuona</td></tr>
+            <tr><td>Joan Mir</td></tr>
+            <tr><td>Jorge Lorenzo</td></tr>
+            <tr><td>Marc Márquez</td></tr>
+            <tr><td>Maverick Viñales</td></tr>
+            <tr><td>Valentino Rossi</td></tr>
+          `;
+          expect(Plantilla.cuerpoTrNAZ(nombres.sort())).toBe(expectedOutput);
+        });
+      });**/
+    
+    //TDD PIETABLE getNAlfabeticamente
+    describe("Plantilla.pieTableNAZ ", function () {
+        it("debería devolver las etiquetas HTML para el pie de tabla",
+            function () {
+                expect(Plantilla.pieTableNAZ()).toBe("</tbody></table>");
+            });
+    });
 
 /*
 IMPORTANTE

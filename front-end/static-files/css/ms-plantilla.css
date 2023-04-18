@@ -82,3 +82,16 @@ table.listado-motociclistas td {
 table.listado-motociclistas {
     width: 100%;
 }
+
+.mi-boton {
+    background-color: #2a335a; /* Color de fondo */
+    border: none; /* Quitamos el borde */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Ajustamos el padding para que quede más grande */
+    text-align: center; /* Centramos el texto */
+    text-decoration: none; /* Quitamos la decoración del enlace */
+    display: inline-block; /* Hacemos que se comporte como un elemento en línea */
+    font-size: 16px; /* Tamaño de fuente */
+    margin: 10px; /* Agregamos un poco de margen para separarlo de otros elementos */
+    cursor: pointer; /* Cambiamos el cursor al pasar el ratón por encima */
+  }

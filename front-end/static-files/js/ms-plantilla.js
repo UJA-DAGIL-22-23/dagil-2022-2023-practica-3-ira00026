@@ -182,7 +182,7 @@ Plantilla.cuerpoTr = function (p) {
     const marcas_motocicletas = d.marcas_motocicletas.join(', ');
 
     return `<tr title="${p.ref['@ref'].id}">
-    <td>${d.nombre}</td>
+    <td><a href="=${p.ref['@ref'].nombre}">${d.nombre}</a></td>
     <td><em>${d.nombre_equipo}</em></td>
     <td>${d.tipo_moto}</td>
     <td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td>
@@ -191,6 +191,7 @@ Plantilla.cuerpoTr = function (p) {
     <td>${marcas_motocicletas}</td>
     <td>${d.posicion_campeonato}</td>
     </tr>
+   
     `;
 }
 
