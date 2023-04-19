@@ -251,12 +251,8 @@ describe('Plantilla.cuerpoTr', () => {
       expect(result).toContain(`${data.fecha_nacimiento.dia}/${data.fecha_nacimiento.mes}/${data.fecha_nacimiento.anio}`);
     });
   
-    // Puedes seguir agregando más pruebas para verificar el comportamiento de la función en distintos casos
-  });
+    });
   
-  
-  
-
   
 
 //TDD PIETABLE GETTODOS

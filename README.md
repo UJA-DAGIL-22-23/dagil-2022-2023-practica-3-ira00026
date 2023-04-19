@@ -259,12 +259,8 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 
 ## HU 01:Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”.
 
+* En el fichero callbacks.js:
 ```
-/**
-     * Devuelve un mensaje indicando que se ha accedido a la información Acerca De del microservicio
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
-     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
-     */
     acercaDe: async (req, res) => {
         try {
             CORS(res).status(200).json({
@@ -287,7 +283,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 
 ## HU 02:
 02. Ver un listado solo con los nombres de todos los jugadores/equipos.
-Para esta HU, he implementado el método : "getNombres".
+* Para esta HU, he implementado el método : "getNombres".
 
 
 ```
@@ -319,7 +315,7 @@ router.get("/getNombres", async (req, res) => {
 });
 ```
 
-Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cuerpoTrN, pieTableN, listarNombres
+* Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cuerpoTrN, pieTableN, listarNombres
 
 ```
 
@@ -402,7 +398,7 @@ Plantilla.listarNombres = function () {
 
 ## HU 03:
 03. Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente. 
-Para esta HU, he implementado el método : "getNAlfabeticamente".
+* Para esta HU, he implementado el método : "getNAlfabeticamente".
 
 ```
 getNAlfabeticamente: async (req, res) => {
@@ -435,7 +431,7 @@ router.get("/getNAlfabeticamente", async (req, res) => {
 
 ```
 
-Compuesto de las funciones: recuperaNombresAZ, imprimeNCompuesto de las funciones: recuperaNombres, imprimeNAZ, cabeceraTableNAZ, cuerpoTrNAZ, pieTableNAZ, listarNombresAZ
+* Compuesto de las funciones: recuperaNombresAZ, imprimeNCompuesto de las funciones: recuperaNombres, imprimeNAZ, cabeceraTableNAZ, cuerpoTrNAZ, pieTableNAZ, listarNombresAZ
 
 ```
 
@@ -515,7 +511,7 @@ Plantilla.listarNombresAZ = function () {
 
 ## HU 04:
 04. Ver un listado con todos los datos de todos los jugadores/equipos
-Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
+* Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
 
 ```
 getTodos: async (req, res) => {
@@ -548,7 +544,7 @@ router.get("/getTodos", async (req, res) => {
 ```
 
 
-Compuesto de las funciones: recupera, imprime, cabeceraTable, cuerpoTr, pieTable, listar.
+* Compuesto de las funciones: recupera, imprime, cabeceraTable, cuerpoTr, pieTable, listar.
 
 ```
 
@@ -642,8 +638,8 @@ Plantilla.listar = function () {
 ## HU 08:
 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
-En esta HU he utilizado el método: getTodos.
-En base a las funciones implementadas para esta HU, me ha servido para las 2 siguientes HU, DICHAS FUNCIONES SON: plantillaTags, plantillaTablaMotociclistas(cabecera, cuerpo y pie de tabla), sustituyeTags, actualiza, recuperapersonaBuscar, imprimeTodosMotociclistas, personaBuscar.
+* En esta HU he utilizado el método: getTodos.
+* En base a las funciones implementadas para esta HU, me ha servido para las 2 siguientes HU, DICHAS FUNCIONES SON: plantillaTags, plantillaTablaMotociclistas(cabecera, cuerpo y pie de tabla), sustituyeTags, actualiza, recuperapersonaBuscar, imprimeTodosMotociclistas, personaBuscar.
 
 
 ```
@@ -1036,9 +1032,80 @@ Para las historias de usuario 8,10 y 11, se han añadido 3 tipos de formularios:
 
 
 
-# *FICHERO ms-plantilla.cdd*:
+# *FICHERO ms-plantilla.css*:
+* En este fichero, hemos editado algunos parámetros, como por ejemplo el color de la tabla de la plantilla y, además, he añadido la tabla "listado-motociclistas"
+
+```
+/**LISTADO MOTOCILISTAS**/
+
+table.listado-motociclistas {
+    width: 100%;
+    border: 1px solid rgba(44, 131, 181, 0.8);
+}
+
+table.listado-motociclistas thead th,
+table.listado-motociclistas tbody th {
+    margin: 3px;
+    height: 2.5em;
+    background-color: rgba(101, 161, 193, 0.704);
+    text-transform: uppercase;
+
+}
+
+
+/**table.listado-motociclistas tbody th {
+    background-color: rgba(39, 154, 199, 0.611);
+}**/
+
+table.listado-motociclistas tbody td {
+    padding: 0.5em;
+    text-align: center;
+}
+
+table.listado-motociclistas tbody tr {
+    margin: 3px;
+    height: 2em;
+    background-color: rgba(182, 229, 255, 0.441)
+}
+table.listado-motociclistas thead,
+table.listado-motociclistas tbody,
+table.listado-motociclistas tr,
+table.listado-motociclistas td {
+    text-align: center;
+    margin: 0 auto 0 auto;
+}
+table.listado-motociclistas {
+    width: 100%;
+}
+```
 
 # *TDD de funciones*: 
+
+## Captura TDD de funciones implementados en el fichero ms-plantilla-spec.js:
+![Captura TDDS](./assets/img/TDDS.png)
+
+Funciones añadidas de esta aplicación de microservicios: 
+ 
+* recupera
+* imprime
+* cabeceraTable
+* cuerporTr
+* pietable 
+* recuperaNombres
+* imprimeNombres
+* cabeceraTableN
+* cuerpoTrN
+* pieTableN
+* recuperaNombresAZ
+* imprimeNAZ
+* cabeceraTableNAZ
+* cuerpoTrNAZ
+* pieTableNAZ
+* sustituyeTags
+* recuperapersonaBuscar
+* imprimeTodosMotocilistas
+* recuperaCumpleVariosCriterios
+* recuperaVariosCriterios
 
 En esta sección se muestran ejemplos los TDD implementados para las funciones implementadas de la aplicación de microservicios, se pondrá un ejemplo de cada tipo de función, es decir, si hay varias funciones del tipo "recupera", se pondrá un ejemplo para visualizar la implementación que se ha usado en todas aquellas funciones que son similares, para tener una ligera idea y no añadir tanto texto:
 
@@ -1094,6 +1161,21 @@ it("muestra un mensaje de error si no se puede acceder al API Gateway",
 
 ```
 
+## Función "Plantilla.imprime":
+
+```
+describe("Plantilla.imprime: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", 
+        function () {
+            // Objeto vacio
+            Plantilla.imprime([])
+            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
+           
+    })
+})
+
+```
+
 ## Función "Plantilla.cabeceraTable":
 ```
 describe("Plantilla.cabeceraTable: ", function () {
@@ -1110,7 +1192,61 @@ describe("Plantilla.cabeceraTable: ", function () {
 });
 ```
 
+## Función "Plantilla.cuerpoTr":
+
+```
+describe('Plantilla.cuerpoTr', () => {
+    it('debería retornar una cadena que contenga el nombre del piloto', () => {
+      const data = {
+        nombre: 'Marc Márquez',
+        nombre_equipo: 'Repsol Honda Team',
+        tipo_moto: 'Honda',
+        fecha_nacimiento: { dia: 17, mes: 2, anio: 1993 },
+        anios_experiencia: [8, 9],
+        puntuaciones_carrera: [25, 20],
+        marcas_motocicletas: ['Honda', 'Yamaha'],
+        posicion_campeonato: 2
+      };
+      const result = Plantilla.cuerpoTr({ data });
+      expect(result).toContain(data.nombre);
+    });
+  
+    it('debería retornar una cadena que contenga el nombre del equipo en cursiva', () => {
+      const data = {
+        nombre: 'Valentino Rossi',
+        nombre_equipo: 'Petronas Yamaha SRT',
+        tipo_moto: 'Yamaha',
+        fecha_nacimiento: { dia: 16, mes: 2, anio: 1979 },
+        anios_experiencia: [21, 22],
+        puntuaciones_carrera: [16, 10],
+        marcas_motocicletas: ['Yamaha', 'Ducati', 'Honda'],
+        posicion_campeonato: 10
+      };
+      const result = Plantilla.cuerpoTr({ data });
+      expect(result).toContain(`<em>${data.nombre_equipo}</em>`);
+    });
+  
+    it('debería retornar una cadena que contenga la fecha de nacimiento en formato "dd/mm/yyyy"', () => {
+      const data = {
+        nombre: 'Joan Mir',
+        nombre_equipo: 'Team Suzuki Ecstar',
+        tipo_moto: 'Suzuki',
+        fecha_nacimiento: { dia: 1, mes: 9, anio: 1997 },
+        anios_experiencia: [4, 5],
+        puntuaciones_carrera: [10, 8],
+        marcas_motocicletas: ['Suzuki', 'KTM'],
+        posicion_campeonato: 3
+      };
+      const result = Plantilla.cuerpoTr({ data });
+      expect(result).toContain(`${data.fecha_nacimiento.dia}/${data.fecha_nacimiento.mes}/${data.fecha_nacimiento.anio}`);
+    });
+  
+    });
+  
+```
+
 ## Función "Plantilla.pieTable":
+```
 
 describe("Plantilla.pieTable ", function () {
     it("debería devolver las etiquetas HTML para el pie de tabla",
@@ -1118,6 +1254,96 @@ describe("Plantilla.pieTable ", function () {
             expect(Plantilla.pieTable()).toBe("</tbody></table>");
         });
 });
+```
+
+* Las siguientes funciones son muy parecidas a las anteriores en relación a las tablas, pero "cabeceraTableN" y "cuerpoTrN" utilizan el método: "getNombres" en vez del método: "getTodos".
+
+## Función "Plantilla.cabeceraTableN":
+```
+describe("Plantilla.cabeceraTableN: ", function () {
+      
+        it("debería devolver una cadena de texto que contienen las cabeceras de una tabla HTML",
+            function () {
+                expect(Plantilla.cabeceraTableN()).toBe(`<table class="listado-Plantilla">
+        <thead>
+        <th>Nombre</th>
+        </thead>
+        <tbody>
+    `);
+            });
+    });
+```
+## Función "Plantilla.cuerpoTrN":
+```
+describe('Plantilla.cuerpoTrN', () => {
+        it("debería contener el nombre pasado como parámetro en la cadena que retorna la función",
+            function () {
+                expect(Plantilla.cuerpoTrN("Jorge Lorenzo")).toContain("Jorge Lorenzo");
+            });
+      });
+```
+
+## Función "Plantilla.sustituyeTags":
+
+```
+describe('Plantilla.sustituyeTags', function () {
+        // Preparar los datos de la prueba
+        const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
+        const persona = {
+            data: {
+                nombre: 'Jorge Lorenzo',
+                nombre_equipo: 'Equipo 1',
+                tipo_moto: 'Moto 1',
+                fecha_nacimiento: {
+                    dia: '01',
+                    mes: '01',
+                    anio: '1990'
+                },
+                anios_experiencia: 5,
+                puntuaciones_carrera: '10,8,6',
+                marcas_motocicletas: 'Marca 1, Marca 2',
+                posicion_campeonato: 1
+            }
+        };
+    
+        // Realizar los expect
+        it('debería devolver la plantilla con los tags reemplazados por los datos de la persona',
+            function () {
+                expect(Plantilla.sustituyeTags(plantilla, persona)).toBe('<tr><td>Jorge Lorenzo</td><td>Equipo 1</td><td>Moto 1</td><td>01/01/1990</td><td>5</td><td>10,8,6</td><td>Marca 1, Marca 2</td><td>1</td></tr>');
+            });
+    });
+
+```
+
+## Función "Plantilla.recuperaCumpleVariosCriterios":
+
+```
+describe("Plantilla.recuperaCumpleVariosCriterios", function () {
+        // TDD RECUPERA recuperaCumpleVariosCriterios
+        beforeEach(() => {
+            spyOn(window, 'alert')
+            spyOn(console, 'error')
+        })
+        
+        it("muestra un mensaje de error si no se puede acceder al API Gateway",
+            async function () {
+                // Mock del resultado del fetch
+                spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+        
+                // Mock de la función callback
+                const callBackFn = jasmine.createSpy("callBackFn")
+        
+                // Ejecutar la función a probar
+                await Plantilla.recuperaCumpleVariosCriterios("MotoGP", "Yamaha", "1", callBackFn)
+        
+                // Verificaciones
+                expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+                expect(callBackFn).not.toHaveBeenCalled()
+                expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+                expect(console.error).toHaveBeenCalled()
+            })
+        })
+```
 
 ## Captura TDD  del correcto funcionamiento de las funciones indicadas de los métodos "getTodos,getNombres":
 ![Captura tdd1](./assets/img/tdd1.png)
