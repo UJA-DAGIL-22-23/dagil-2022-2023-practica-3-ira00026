@@ -405,31 +405,28 @@ describe("Plantilla.recuperaNombresAZ", function () {
     
     //TDD CUERPO getNAlfabeticamente
     
-    /**describe("Pruebas para la función cuerpoTrNAZ", () => {
-        it("Debería retornar una cadena vacía si no se proporciona un nombre", () => {
-          expect(Plantilla.cuerpoTrNAZ()).toBe("<tr><td></td></tr>");
-        });
+    /**describe('Plantilla.cuerpoTrNAZ', function () {
+        // Preparar los datos de la prueba
+        
       
-        it("Debería mostrar un solo nombre en una fila de la tabla", () => {
-          expect(Plantilla.cuerpoTrNAZ("Valentino Rossi")).toBe("<tr><td>Valentino Rossi</td></tr>");
-        });
-      
-        it("Debería mostrar varios nombres en filas ordenadas alfabéticamente", () => {
-          const nombres = ["Jorge Lorenzo", "Valentino Rossi", "Marc Márquez", "Joan Mir", "MaverickViñales", "Fabio Quartararo", "Johann Zarco", "Alex Rins", "Enea Bastianini", "Iker Lecuona"];
-          const expectedOutput = `
-            <tr><td>Alex Rins</td></tr>
-            <tr><td>Enea Bastianini</td></tr>
-            <tr><td>Fabio Quartararo</td></tr>
-            <tr><td>Iker Lecuona</td></tr>
-            <tr><td>Joan Mir</td></tr>
-            <tr><td>Jorge Lorenzo</td></tr>
-            <tr><td>Marc Márquez</td></tr>
-            <tr><td>Maverick Viñales</td></tr>
-            <tr><td>Valentino Rossi</td></tr>
-          `;
-          expect(Plantilla.cuerpoTrNAZ(nombres.sort())).toBe(expectedOutput);
-        });
+        // Realizar los expect
+        it("debería devolver una cadena que contenga los nombres de la plantilla",
+            function () {
+                expect(Plantilla.cuerpoTrNAZ(nombre)).toBe(`<tr"><td>${nombre}</td></tr>`);
+            });
       });**/
+
+      describe('Plantilla.cuerpoTrNAZ', function () {
+
+        // Prueba 1
+        
+        it("debería contener el nombre pasado como parámetro en la cadena que retorna la función",
+            function () {
+                expect(Plantilla.cuerpoTrNAZ("Jorge Lorenzo")).toContain("Jorge Lorenzo");
+            });
+    
+    
+    });
     
     //TDD PIETABLE getNAlfabeticamente
     describe("Plantilla.pieTableNAZ ", function () {
@@ -438,6 +435,70 @@ describe("Plantilla.recuperaNombresAZ", function () {
                 expect(Plantilla.pieTableNAZ()).toBe("</tbody></table>");
             });
     });
+
+//TDD DE SUSTITUYETAGS
+    describe('Plantilla.sustituyeTags', function () {
+        // Preparar los datos de la prueba
+        const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
+        const persona = {
+            data: {
+                nombre: 'Jorge Lorenzo',
+                nombre_equipo: 'Equipo 1',
+                tipo_moto: 'Moto 1',
+                fecha_nacimiento: {
+                    dia: '01',
+                    mes: '01',
+                    anio: '1990'
+                },
+                anios_experiencia: 5,
+                puntuaciones_carrera: '10,8,6',
+                marcas_motocicletas: 'Marca 1, Marca 2',
+                posicion_campeonato: 1
+            }
+        };
+    
+        // Realizar los expect
+        it('debería devolver la plantilla con los tags reemplazados por los datos de la persona',
+            function () {
+                expect(Plantilla.sustituyeTags(plantilla, persona)).toBe('<tr><td>Jorge Lorenzo</td><td>Equipo 1</td><td>Moto 1</td><td>01/01/1990</td><td>5</td><td>10,8,6</td><td>Marca 1, Marca 2</td><td>1</td></tr>');
+            });
+    });
+
+    //TDD DE LA FUNCION RECUPERAPERSONABUSCAR
+    describe("Plantilla.recuperapersonaBuscar", function () {
+        // TDD RECUPERA getTodos
+        beforeEach(() => {
+            spyOn(window, 'alert')
+            spyOn(console, 'error')
+        })
+
+       
+        it("muestra un mensaje de error si no se puede acceder al API Gateway",
+            async function () {
+                const nombreBuscar = "Juan"
+                // Mock del resultado del fetch
+                spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+    
+                // Mock de la función callback
+                const callBackFn = jasmine.createSpy("callBackFn")
+    
+                // Ejecutar la función a probar
+                await Plantilla.recuperapersonaBuscar(nombreBuscar, callBackFn)
+    
+                // Verificaciones
+                expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+                expect(callBackFn).not.toHaveBeenCalled()
+                expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+                expect(console.error).toHaveBeenCalled()
+            })
+    })
+    
+    
+
+    
+
+
+    
 
 /*
 IMPORTANTE
