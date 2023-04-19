@@ -257,6 +257,34 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 ```
 **Historias de usuario elegidas a implementar en mi aplicación de microservicios: **
 
+## HU 01:Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”.
+
+```
+/**
+     * Devuelve un mensaje indicando que se ha accedido a la información Acerca De del microservicio
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    acercaDe: async (req, res) => {
+        try {
+            CORS(res).status(200).json({
+                mensaje: "Microservicio MS Plantilla: acerca de",
+                autor: "Irene Rubiales Arguelles",
+                email: "ira00026@red.ujaen.es",
+                fecha: "Marzo 2023"
+            });
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+}
+
+```
+
+## Captura "HU 02":
+![Captura Acerca De](./assets/img/Acercade.png)
+
 ## HU 02:
 02. Ver un listado solo con los nombres de todos los jugadores/equipos.
 Para esta HU, he implementado el método : "getNombres".
