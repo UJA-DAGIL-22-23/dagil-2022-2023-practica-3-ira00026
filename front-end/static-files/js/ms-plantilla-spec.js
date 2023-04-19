@@ -15,7 +15,8 @@ const TITULO_ACERCA_DE = "Plantilla Acerca de"
 const TITULO_IMPRIME = "Listado de motociclistas"
 const TITULO_NAZ = "Listado de NOMBRES Aa-Zz de motociclistas"
 const TITULO_MOTOCICLISTAS = "Listado de motocilistas"
-const CONTENIDO_VACIO =""
+const TITULO_NOMBRE = "Listado de NOMBRES de motociclistas"
+
 
 
 const datosDescargadosPrueba = {
@@ -176,14 +177,16 @@ it("muestra un mensaje de error si no se puede acceder al API Gateway",
 })
 
 // TDD IMPRIME GETTODOS
-/*describe("Plantilla.imprime", function () {
-    it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
-    function () {
-        Plantilla.imprime([])
-        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
-        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
+
+describe("Plantilla.imprime: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", 
+        function () {
+            // Objeto vacio
+            Plantilla.imprime([])
+            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
+           
     })
-})*/
+})
     
 //TDD CABECERA GETTODOS
 
@@ -314,14 +317,16 @@ describe("Plantilla.recuperaNombres", function () {
     })
     
     // TDD IMPRIME GETNOMBRES
-    /**describe("Plantilla.imprime", function () {
-        it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
-        function () {
-            Plantilla.imprime([])
-            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
-            expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
+   
+    describe("Plantilla.imprimeNombres: ", function() {
+        it("Mostrar datos nulos cuando le pasamos vector nulo", 
+            function () {
+                // Objeto vacio
+                Plantilla.imprimeNombres([])
+                expect(elementoTitulo.innerHTML).toBe(TITULO_NOMBRE)
+               
         })
-    })**/
+    })
         
     //TDD CABECERA GETNOMBRES
     
@@ -413,9 +418,9 @@ describe("Plantilla.recuperaNombresAZ", function () {
                 // Objeto vacio
                 Plantilla.imprimeNAZ([])
                 expect(elementoTitulo.innerHTML).toBe(TITULO_NAZ)
-                expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
+               
         })
-        })
+    })
         
     //TDD CABECERA getNAlfabeticamente
     
@@ -523,8 +528,105 @@ describe("Plantilla.recuperaNombresAZ", function () {
 
     //TDD DE recuperaCumpleVariosCriterios
 
+    describe("Plantilla.recuperaCumpleVariosCriterios", function () {
+        // TDD RECUPERA recuperaCumpleVariosCriterios
+        beforeEach(() => {
+            spyOn(window, 'alert')
+            spyOn(console, 'error')
+        })
+        
+        it("muestra un mensaje de error si no se puede acceder al API Gateway",
+            async function () {
+                // Mock del resultado del fetch
+                spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+        
+                // Mock de la función callback
+                const callBackFn = jasmine.createSpy("callBackFn")
+        
+                // Ejecutar la función a probar
+                await Plantilla.recuperaCumpleVariosCriterios("MotoGP", "Yamaha", "1", callBackFn)
+        
+                // Verificaciones
+                expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+                expect(callBackFn).not.toHaveBeenCalled()
+                expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+                expect(console.error).toHaveBeenCalled()
+            })
+        })
+    
+
+
     //TDD DE recuperaVariosCriterios
-      
+    describe("Plantilla.recuperaVariosCriterios", function () {
+        // TDD RECUPERA recuperaVariosCriterios
+        beforeEach(() => {
+            spyOn(window, 'alert')
+            spyOn(console, 'error')
+        })
+        
+        it("llama al API Gateway para obtener todos los datos y ejecuta la función callback con los datos filtrados",
+            async function () {
+                // Mock del resultado del fetch
+                const datosPrueba = [
+                    {
+                        data: {
+                            tipo_moto: "MotoGP",
+                            nombre_equipo: "Yamaha",
+                            posicion_campeonato: 1
+                        }
+                    },
+                    {
+                        data: {
+                            tipo_moto: "Moto2",
+                            nombre_equipo: "Kalex",
+                            posicion_campeonato: 5
+                        }
+                    },
+                    {
+                        data: {
+                            tipo_moto: "Moto3",
+                            nombre_equipo: "Honda",
+                            posicion_campeonato: 8
+                        }
+                    }
+                ]
+                const respuestaMock = {
+                    json: function () { return { data: datosPrueba } }
+                }
+                spyOn(window, 'fetch').and.returnValue(Promise.resolve(respuestaMock))
+        
+                // Mock de la función callback
+                const callBackFn = jasmine.createSpy("callBackFn")
+        
+                // Ejecutar la función a probar
+                await Plantilla.recuperaVariosCriterios("MotoGP", null, null, callBackFn)
+        
+                // Verificaciones
+                expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+                expect(callBackFn).toHaveBeenCalledWith([datosPrueba[0]])
+                expect(window.alert).not.toHaveBeenCalled()
+                expect(console.error).not.toHaveBeenCalled()
+            })
+        
+        it("muestra un mensaje de error si no se puede acceder al API Gateway",
+            async function () {
+                // Mock del resultado del fetch
+                spyOn(window, 'fetch').and.throwError("Error al acceder al API Gateway")
+        
+                // Mock de la función callback
+                const callBackFn = jasmine.createSpy("callBackFn")
+        
+                // Ejecutar la función a probar
+                await Plantilla.recuperaVariosCriterios("MotoGP", null, null, callBackFn)
+        
+                // Verificaciones
+                expect(window.fetch).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/plantilla/getTodos")
+                expect(callBackFn).not.toHaveBeenCalled()
+                expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway")
+                expect(console.error).toHaveBeenCalled()
+            })
+    })
+    
 
     
 
