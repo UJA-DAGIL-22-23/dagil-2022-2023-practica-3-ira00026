@@ -255,7 +255,8 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 }
 
 ```
-##Historias de usuario elegidas a implementar en mi aplicación de microservicios: 
+
+## Historias de usuario elegidas a implementar en mi aplicación de microservicios: 
 
 ## HU 01:Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”.
 
