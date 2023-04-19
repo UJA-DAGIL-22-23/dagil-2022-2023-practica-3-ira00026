@@ -171,7 +171,7 @@ Plantilla.cabeceraTable = function () {
 
 /**
  * Muestra la información de cada proyecto en un elemento TR con sus correspondientes TD
- * @param {motociclistas} m Datos del motociclista a mostrar
+ * @param {motociclistas} p Datos del motociclista a mostrar
  * @returns Cadena conteniendo todo el elemento TR que muestra el proyecto.
  */
 Plantilla.cuerpoTr = function (p) {
@@ -534,6 +534,10 @@ Plantilla.personaBuscar = function (nombreBuscar){
 
 //HU 10 : Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
 
+/**
+ * Función que recuperar todos los datos llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
 Plantilla.recuperaCumpleVariosCriterios = async function (criterio1,criterio2,criterio3,callBackFn) {
 
     // Intento conectar con el microservicio proyectos
@@ -570,6 +574,10 @@ Plantilla.BuscarCumpleVariosCriterios = function (criterio1, criterio2, criterio
 
 //HU 11 : Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
 
+/**
+ * Función que recuperar todos los datos llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
 Plantilla.recuperaVariosCriterios = async function (criterio1p,criterio2p,criterio3p,callBackFn) {
 
     // Intento conectar con el microservicio proyectos
