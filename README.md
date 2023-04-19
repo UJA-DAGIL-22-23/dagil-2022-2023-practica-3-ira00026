@@ -778,11 +778,14 @@ Plantilla.personaBuscar = function (nombreBuscar){
 
 
 # *FICHERO INDEX.HTML*:
+Botones en la plantilla de la práctica:
+* Botón: Home
+* Botón: Acerca de
 
 Se han añadido los siguientes botones:
-* Listar Datos Completos --> Para la HU4
-* Listar Nombres Motociclistas --> Para la HU2
-* Listar Nombres Aa-Zz Motociclistas --> Para la HU3
+* Botón: Listar Datos Completos --> Para la HU4
+* Botón: Listar Nombres Motociclistas --> Para la HU2
+* Botón: Listar Nombres Aa-Zz Motociclistas --> Para la HU3
 
 ```
 body>
@@ -803,8 +806,164 @@ body>
      <br>
 
 ```
+## Captura Botones Index.html:
+![Captura Botones](./assets/img/Botones.png)
 
 Para las historias de usuario 8,10 y 11, se han añadido 3 tipos de formularios:
+
+* Formulario "Buscar por nombre completo" --> Para la HU 08
+--> Este formulario tiene una caja de texto para que el usuario escriba el nombre completo de la persona que desea buscar y un botón para ejecutar la búsqueda. Al hacer clic en el botón, se activa una función de JavaScript que toma el valor de la caja de texto y llama a una función llamada "personaBuscar" en un objeto llamado "Plantilla". Esta función probablemente buscará en una base de datos u otro origen de datos para encontrar información sobre la persona buscada y mostrarla al usuario.
+
+```
+<form> 
+                <br>
+                <br>
+                <label>Buscar por nombre completo:</label> 
+            <input type="text" id="search" name="search">
+            <button type="button" onclick="Buscar()"> BUSCAR DATOS </button>
+            </form>
+            <script>function Buscar(){
+                var searchTerm = document.getElementById("search").value;
+                Plantilla.personaBuscar(searchTerm);
+            }
+            </script>
+```
+## Captura Formulario 1 Index.html:
+![Captura F1](./assets/img/F1.png)
+
+* Formulario "Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar" --> Para la HU10
+--> Este formulario tiene tres campos de entrada y un botón de búsqueda. Los campos son "Posicion_Campeonato", "Tipo_Moto" y "Marcas_Motocicletas". El usuario puede seleccionar una opción en cada campo y luego hacer clic en el botón de búsqueda para buscar los motociclistas que cumplen con los criterios seleccionados. Al hacer clic en el botón, se activa una función de JavaScript que toma los valores de los campos y llama a una función llamada "BuscarCumpleVariosCriterios" en un objeto llamado "Plantilla". Esta función probablemente buscará en una base de datos u otro origen de datos para encontrar motociclistas que cumplen con los criterios seleccionados y mostrarlos al usuario.
+
+```
+<table class="listado-motociclistas">
+    <br>
+    <thead>
+        <thead>
+            <th>Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar</th>
+        </thead>
+        <th>Tipo_Moto</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th><th>Opción</th>
+    </thead>
+    <tbody>
+    <tr>
+       
+        
+        <td>
+        <label for="Tipo_Moto">Tipo_Moto</label>
+        <select id="criterio1" name="criterio1">
+            <option value="">Selecciona una opción</option>
+            <option value="Yamaha YZR-M1">Yamaha YZR-M1</option>
+            <option value="Honda RC213V">Honda RC213V</option>
+            <option value="Suzuki GSX-RR">Suzuki GSX-RR</option>
+            <option value="Ducati Desmosedici GP">Ducati Desmosedici GP</option>
+            <option value="KTM RC16">KTM RC16</option>
+            
+        </select><br><br>
+        </td>
+        <td>
+        <label for="Nombre_Equipo">Nombre_Equipo:</label>
+        <select id="criterio2" name="criterio2">
+            <option value="">Selecciona una opción</option>
+            <option value="Yamaha Factory Racing">Yamaha Factory Racing</option>
+            <option value="Monster Energy Yamaha MotoGP">Monster Energy Yamaha MotoGP</option>
+            <option value="Repsol Honda Team">Repsol Honda Team</option>
+            <option value="Team Suzuki Ecstar">Team Suzuki Ecstar</option>
+            <option value="Pramac Racing">Pramac Racing</option>
+            <option value="Avintia Esponsorama Racing">Avintia Esponsorama Racing</option>
+            <option value="Tech 3 KTM Factory Racing">Tech 3 KTM Factory Racing</option>
+
+        </select><br><br>
+        </td>
+        <td>
+            <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
+            <input type="number" id="criterio3" name="criterio3"><br><br>
+            </td> 
+        <td>
+        <div><button type="button" onclick="BuscarCumpleCriterios()">BUSCAR MOTOCILISTA/S</button></div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+</form>
+<script>function BuscarCumpleCriterios(){
+    var criterio1term = document.getElementById('criterio1').value;
+    var criterio2term = document.getElementById('criterio2').value;
+    var criterio3term = document.getElementById('criterio3').value;
+    Plantilla.BuscarCumpleVariosCriterios(criterio1term,criterio2term,criterio3term);
+}
+</script>
+</nav>
+</nav>
+```
+## Captura Formulario 2 Index.html:
+![Captura F2](./assets/img/F2.png)
+
+* Formulario "Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar" --> Para la HU11
+--> Este es un formulario HTML que permite a los usuarios buscar motociclistas que cumplen con ciertos criterios comunes. El formulario incluye tres campos que el usuario puede rellenar: Posicion_Campeonato (una posición en el campeonato de motociclismo), Tipo_Moto (el tipo de motocicleta que se utiliza en la carrera) y Marcas_Motocicletas (el equipo o la marca de la motocicleta utilizada). También hay un botón "BUSCAR MOTOCICILISTA/S" que ejecuta una función en JavaScript para buscar los criterios especificados en la base de datos de motociclistas. Cuando el usuario hace clic en el botón, la función recoge los términos de búsqueda del usuario y los utiliza para buscar los motociclistas que cumplen con los criterios especificados.
+
+```
+<table class="listado-motociclistas">
+            <br>
+        <thead>
+            <thead>
+                <th>Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar</th>
+            </thead>
+            <th>Tipo_Moto</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th><th>Opción</th>
+        </thead>
+        <tbody>
+        <tr>
+           
+            
+            <td>
+            <label for="Tipo_Moto">Tipo_Moto</label>
+            <select id="criterio1p" name="criterio1p">
+                <option value="">Selecciona una opción</option>
+                <option value="Yamaha YZR-M1">Yamaha YZR-M1</option>
+                <option value="Honda RC213V">Honda RC213V</option>
+                <option value="Suzuki GSX-RR">Suzuki GSX-RR</option>
+                <option value="Ducati Desmosedici GP">Ducati Desmosedici GP</option>
+                <option value="KTM RC16">KTM RC16</option>
+                
+            </select><br><br>
+            </td>
+            <td>
+            <label for="Nombre_Equipo">Nombre_Equipo:</label>
+            <select id="criterio2p" name="criterio2p">
+                <option value="">Selecciona una opción</option>
+                <option value="Yamaha Factory Racing">Yamaha Factory Racing</option>
+                <option value="Monster Energy Yamaha MotoGP">Monster Energy Yamaha MotoGP</option>
+                <option value="Repsol Honda Team">Repsol Honda Team</option>
+                <option value="Team Suzuki Ecstar">Team Suzuki Ecstar</option>
+                <option value="Pramac Racing">Pramac Racing</option>
+                <option value="Avintia Esponsorama Racing">Avintia Esponsorama Racing</option>
+                <option value="Tech 3 KTM Factory Racing">Tech 3 KTM Factory Racing</option>
+
+            </select><br><br>
+            </td>
+            <td>
+                <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
+                <input type="number" id="criterio3p" name="criterio3p"><br><br>
+                </td> 
+            
+            <td>
+            <div><button type="button" onclick="BuscarCriterios()">BUSCAR MOTOCILISTA/S</button></div>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+    </form>
+    <script>function BuscarCriterios(){
+        var criterio1term = document.getElementById('criterio1p').value;
+        var criterio2term = document.getElementById('criterio2p').value;
+        var criterio3term = document.getElementById('criterio3p').value;
+        Plantilla.BuscarVariosCriterios(criterio1term,criterio2term,criterio3term);
+    }
+    </script>
+    </nav>
+    </nav>
+```
+## Captura Formulario 3 Index.html:
+![Captura F3](./assets/img/F3.png)
+
 
 
 # *FICHERO ms-plantilla.cdd*:
