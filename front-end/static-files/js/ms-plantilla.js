@@ -181,7 +181,7 @@ Plantilla.cuerpoTr = function (p) {
     const puntuaciones_carrera = d.puntuaciones_carrera.join(', ');
     const marcas_motocicletas = d.marcas_motocicletas.join(', ');
 
-    return `<tr title="${p.ref['@ref'].id}">
+    return `<tr>
     <td>${d.nombre}</td>
     <td><em>${d.nombre_equipo}</em></td>
     <td>${d.tipo_moto}</td>
@@ -521,6 +521,7 @@ Plantilla.imprimeTodosMotociclistas = function (vector) {
     // Borro toda la info de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar("Listado de motocilistas", msj)
 }
+
 
 /**
  * Función principal para recuperar los nombres por orden alfabético de los motociclistas desde el MS y, posteriormente, imprimirlos.

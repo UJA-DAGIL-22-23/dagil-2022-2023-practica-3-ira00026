@@ -13,7 +13,9 @@ const elementoContenido = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_
 const TITULO_HOME = "Plantilla Home"
 const TITULO_ACERCA_DE = "Plantilla Acerca de"
 const TITULO_IMPRIME = "Listado de motociclistas"
-/*const CONTENIDO_VACIO =''*/
+const TITULO_NAZ = "Listado de NOMBRES Aa-Zz de motociclistas"
+const TITULO_MOTOCICLISTAS = "Listado de motocilistas"
+const CONTENIDO_VACIO =""
 
 
 const datosDescargadosPrueba = {
@@ -200,34 +202,59 @@ describe("Plantilla.cabeceraTable: ", function () {
 
 //TDD CUERPO GETTODOS
 
-/*describe("Plantilla.cuerpoTr", function () {
-    it("genera correctamente la plantilla HTML", function () {
-        // Preparar datos de prueba
-        let p = {
-            ref: {
-                "@ref": {
-                    id: "ref motociclista 1"
-                }
-            },
-            data: {
-                nombre: "Nombre motociclista 1",
-                nombrequipo: "Equipo motociclista 1",
-                nombrequipo: "Tipo de moto motociclista 1",
-                fechaNacimiento: { dia: 1, mes: 1, anio: 2000 },
-                aniosExperiencia: [2002, 2003],
-                puntuacionesCarrera: [25, 20],
-                marcasMotocicletas: [Aprilia, Honda],
-                posicionCampeonato: 23
-                
-            }
-        };
-
-        let resultado = Plantilla.cuerpoTr(p);
-
-        let esperado = `<tr><td>ref motociclista 1</td><td>Nombre motociclista 1</td><td>Equipo motociclista 1</td><td>Tipo de moto motociclista 1</td><td>1/1/2000</td><td>2002,2003</td><td>25,20</td><td>Aprilia, Honda</td><td>23</td><td><div><a href="javascript:Plantilla.mostrarMotociclista('ref motociclista 1')"">Mostrar</a></div></td></tr>`;
-        expect(resultado).toEqual(esperado);
+describe('Plantilla.cuerpoTr', () => {
+    it('debería retornar una cadena que contenga el nombre del piloto', () => {
+      const data = {
+        nombre: 'Marc Márquez',
+        nombre_equipo: 'Repsol Honda Team',
+        tipo_moto: 'Honda',
+        fecha_nacimiento: { dia: 17, mes: 2, anio: 1993 },
+        anios_experiencia: [8, 9],
+        puntuaciones_carrera: [25, 20],
+        marcas_motocicletas: ['Honda', 'Yamaha'],
+        posicion_campeonato: 2
+      };
+      const result = Plantilla.cuerpoTr({ data });
+      expect(result).toContain(data.nombre);
     });
-});*/
+  
+    it('debería retornar una cadena que contenga el nombre del equipo en cursiva', () => {
+      const data = {
+        nombre: 'Valentino Rossi',
+        nombre_equipo: 'Petronas Yamaha SRT',
+        tipo_moto: 'Yamaha',
+        fecha_nacimiento: { dia: 16, mes: 2, anio: 1979 },
+        anios_experiencia: [21, 22],
+        puntuaciones_carrera: [16, 10],
+        marcas_motocicletas: ['Yamaha', 'Ducati', 'Honda'],
+        posicion_campeonato: 10
+      };
+      const result = Plantilla.cuerpoTr({ data });
+      expect(result).toContain(`<em>${data.nombre_equipo}</em>`);
+    });
+  
+    it('debería retornar una cadena que contenga la fecha de nacimiento en formato "dd/mm/yyyy"', () => {
+      const data = {
+        nombre: 'Joan Mir',
+        nombre_equipo: 'Team Suzuki Ecstar',
+        tipo_moto: 'Suzuki',
+        fecha_nacimiento: { dia: 1, mes: 9, anio: 1997 },
+        anios_experiencia: [4, 5],
+        puntuaciones_carrera: [10, 8],
+        marcas_motocicletas: ['Suzuki', 'KTM'],
+        posicion_campeonato: 3
+      };
+      const result = Plantilla.cuerpoTr({ data });
+      expect(result).toContain(`${data.fecha_nacimiento.dia}/${data.fecha_nacimiento.mes}/${data.fecha_nacimiento.anio}`);
+    });
+  
+    // Puedes seguir agregando más pruebas para verificar el comportamiento de la función en distintos casos
+  });
+  
+  
+  
+
+  
 
 //TDD PIETABLE GETTODOS
 describe("Plantilla.pieTable ", function () {
@@ -287,14 +314,14 @@ describe("Plantilla.recuperaNombres", function () {
     })
     
     // TDD IMPRIME GETNOMBRES
-    /*describe("Plantilla.imprime", function () {
+    /**describe("Plantilla.imprime", function () {
         it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
         function () {
             Plantilla.imprime([])
             expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
             expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
         })
-    })*/
+    })**/
         
     //TDD CABECERA GETNOMBRES
     
@@ -312,14 +339,14 @@ describe("Plantilla.recuperaNombres", function () {
     });
     
     //TDD CUERPO GETNOMBRES
-    
-    /*describe("Plantilla.cuerpoTr: ", function () {
-      
-        it("debería devolver una fila de tabla con los datos de un proyecto",
+
+    describe('Plantilla.cuerpoTrN', () => {
+        it("debería contener el nombre pasado como parámetro en la cadena que retorna la función",
             function () {
-                expect(Plantilla.cuerpoTr()).toBe(`<tr title="${p.ref['@ref'].id}"><td>${d.nombre}</td><td><em>${d.nombre_equipo}</em></td><td>${d.tipo_moto}</td><td>${fecha.dia}/${fecha.mes}/${fecha.anio}</td><td>${anios_experiencia}</td><td>${puntuaciones_carrera}</td><td>${marcas_motocicletas}</td><td>${d.posicion_campeonato}</td></tr>`);
+                expect(Plantilla.cuerpoTrN("Jorge Lorenzo")).toContain("Jorge Lorenzo");
             });
-    });*/
+      });
+      
     
     //TDD PIETABLE GETNOMBRES
     describe("Plantilla.pieTableN ", function () {
@@ -379,14 +406,16 @@ describe("Plantilla.recuperaNombresAZ", function () {
     })
     
     // TDD IMPRIME getNAlfabeticamente
-    /*describe("Plantilla.imprime", function () {
-        it ("Cuando le pasamos un vector vacío, los datos tienen que ser nulos",
-        function () {
-            Plantilla.imprime([])
-            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME)
-            expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
+    
+    describe("Plantilla.imprimeNAZ: ", function() {
+        it("Mostrar datos nulos cuando le pasamos vector nulo", 
+            function () {
+                // Objeto vacio
+                Plantilla.imprimeNAZ([])
+                expect(elementoTitulo.innerHTML).toBe(TITULO_NAZ)
+                expect(elementoContenido.querySelector('tbody').innerHTML).toBe(CONTENIDO_VACIO)//Selecciona lo que esta dentro del tbody y tiene que ser un objeto vacío
         })
-    })*/
+        })
         
     //TDD CABECERA getNAlfabeticamente
     
@@ -404,17 +433,6 @@ describe("Plantilla.recuperaNombresAZ", function () {
     });
     
     //TDD CUERPO getNAlfabeticamente
-    
-    /**describe('Plantilla.cuerpoTrNAZ', function () {
-        // Preparar los datos de la prueba
-        
-      
-        // Realizar los expect
-        it("debería devolver una cadena que contenga los nombres de la plantilla",
-            function () {
-                expect(Plantilla.cuerpoTrNAZ(nombre)).toBe(`<tr"><td>${nombre}</td></tr>`);
-            });
-      });**/
 
       describe('Plantilla.cuerpoTrNAZ', function () {
 
@@ -424,8 +442,7 @@ describe("Plantilla.recuperaNombresAZ", function () {
             function () {
                 expect(Plantilla.cuerpoTrNAZ("Jorge Lorenzo")).toContain("Jorge Lorenzo");
             });
-    
-    
+
     });
     
     //TDD PIETABLE getNAlfabeticamente
@@ -493,7 +510,21 @@ describe("Plantilla.recuperaNombresAZ", function () {
             })
     })
     
-    
+    //TDD DE IMPRIMETODOSMOTOCICLISTAS
+
+    describe("Plantilla.imprimeTodosMotociclistas: ", function() {
+        it("Mostrar datos nulos cuando le pasamos vector nulo", 
+            function () {
+                // Objeto vacio
+                Plantilla.imprimeTodosMotociclistas([])
+                expect(elementoTitulo.innerHTML).toBe(TITULO_MOTOCICLISTAS)
+                
+        })})
+
+    //TDD DE recuperaCumpleVariosCriterios
+
+    //TDD DE recuperaVariosCriterios
+      
 
     
 
