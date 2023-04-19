@@ -436,6 +436,8 @@ Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="lis
     `;
 
 // Elemento TR que muestra los datos de una persona
+
+
 Plantilla.plantillaTablaMotociclistas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.NOMBRE}">
         <td>${Plantilla.plantillaTags.NOMBRE}</td>
@@ -462,15 +464,19 @@ Plantilla.plantillaTablaMotociclistas.pie = `        </tbody>
  * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
  */           
+
+// VICTOR: 19-ABR-2023
+// El problema está al mostrar los vectores, dado que los une con comas y no deja espacios en medio
+// Por tanto, hay que hacerles un join que deje algún espacio entre los elementos.
 Plantilla.sustituyeTags = function (plantilla, persona) {
     return plantilla
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_EQUIPO, 'g'), persona.data.nombre_equipo)
         .replace(new RegExp(Plantilla.plantillaTags.TIPO_MOTO, 'g'), persona.data.tipo_moto)
         .replace(new RegExp(Plantilla.plantillaTags["FECHA_NACIMIENTO"], 'g'),  persona.data.fecha_nacimiento.dia + "/" + persona.data.fecha_nacimiento.mes + "/" + persona.data.fecha_nacimiento.anio)
-        .replace(new RegExp(Plantilla.plantillaTags["ANIOS_EXPERIENCIA"], 'g'), persona.data.anios_experiencia)
-        .replace(new RegExp(Plantilla.plantillaTags["PUNTUACIONES_CARRERA"], 'g'), persona.data.puntuaciones_carrera)
-        .replace(new RegExp(Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"], 'g'), persona.data.marcas_motocicletas)
+        .replace(new RegExp(Plantilla.plantillaTags["ANIOS_EXPERIENCIA"], 'g'), persona.data.anios_experiencia.join( ", "))
+        .replace(new RegExp(Plantilla.plantillaTags["PUNTUACIONES_CARRERA"], 'g'), persona.data.puntuaciones_carrera.join( ", "))
+        .replace(new RegExp(Plantilla.plantillaTags["MARCAS_MOTOCICLETAS"], 'g'), persona.data.marcas_motocicletas.join( ", "))
         .replace(new RegExp(Plantilla.plantillaTags.POSICION_CAMPEONATO, 'g'), persona.data.posicion_campeonato)
         
 }
