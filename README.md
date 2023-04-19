@@ -648,7 +648,7 @@ Plantilla.listar = function () {
 ## Captura "HU 04":
 ![Captura tablaGETTODOS](./assets/img/tablaGETTODOS.jpg)
 
-## Captura TRELLO primer incremento en "test" segundo incremento en "Implementación de código":
+## Captura TRELLO primer incremento en "test" y segundo incremento en "Implementación de código":
 * Esta captura muestra que como el primer incremento ya tiene sus funciones implementadas, y pasa a la fase de "implementación de tests", por ese motivo, el segundo incremento pasa a la fase de "implementación de código".
 ![Captura T4](./assets/img/T4.jpeg)
 
@@ -822,6 +822,7 @@ Plantilla.BuscarCumpleVariosCriterios = function (criterio1, criterio2, criterio
 }
 ```
 ## Captura "HU 10":
+* Nombre de la tabla asociado a la HU10 --> Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar
 ![Captura H10](./assets/img/H10.png)
 
 ## HU 11:
@@ -860,6 +861,7 @@ Plantilla.BuscarVariosCriterios = function (criterio1p, criterio2p, criterio3p){
 }
 ```
 ## Captura "HU 11":
+* Nombre de la tabla asociado a la HU11 --> Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar
 ![Captura H11](./assets/img/H11.png)
 
 
