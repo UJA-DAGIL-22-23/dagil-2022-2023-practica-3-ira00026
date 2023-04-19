@@ -261,8 +261,8 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 * Incremento 1: Historias de usuario 01,02,03,04
 * Incremento 2 : Hisotrias de usuario 08,10,11
 
-![Captura T1](./assets/img/T1.jpg)
-![Captura T2](./assets/img/T2.jpg)
+![Captura T1](./assets/img/T1.jpeg)
+![Captura T2](./assets/img/T2.jpeg)
 
 ## Historias de usuario elegidas a implementar en mi aplicación de microservicios: 
 
@@ -650,7 +650,7 @@ Plantilla.listar = function () {
 
 ## Captura TRELLO primer incremento en "test" segundo incremento en "Implementación de código":
 * Esta captura muestra que como el primer incremento ya tiene sus funciones implementadas, y pasa a la fase de "implementación de tests", por ese motivo, el segundo incremento pasa a la fase de "implementación de código".
-![Captura T4](./assets/img/T4.jpg)
+![Captura T4](./assets/img/T4.jpeg)
 
 ## HU 08:
 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
@@ -1101,7 +1101,7 @@ table.listado-motociclistas {
 ```
 ## Captura TRELLO primer incremento en "añadir a README" y segundo incremento en "Test":
 * Esta captura muestra que, como el primer incremento ya tiene sus TDD implementados y pasa a la fase de "añadir al README", por ese motivo, el segundo incremento pasa a la fase de "test".
-![Captura T5](./assets/img/T5.jpg)
+![Captura T5](./assets/img/T5.jpeg)
 
 # *TDD de funciones*: 
 
@@ -1371,21 +1371,21 @@ describe("Plantilla.recuperaCumpleVariosCriterios", function () {
 
 ## Captura TRELLO primer incremento en "DONE" y segundo incremento en "añadir a README":
 * Esta captura muestra que como el primer incremento ya ha sido documentado en el fichero README y pasa a la fase de "DONE", por ese motivo, el segundo incremento pasa a la fase de "añadir a README.
-![Captura T6](./assets/img/T6.jpg)
+![Captura T6](./assets/img/T6.jpeg)
 
 ## Captura TRELLO segundo incremento en "DONE":
 * Esta captura muestra que como el primer Y segundo incremento ya han sido documentados en el fichero README y están en la fase de "DONE", esto quiere decir, que en la fase "DONE", ya estaría terminado el flujo de trabajo y que están completadas todas las historias de usuario.
-![Captura T7](./assets/img/T7.jpg)
+![Captura T7](./assets/img/T7.jpeg)
 
 ## *RESUMEN DE FLUJO DE TRABAJO EN TRELLO*:
 
-![Captura T1](./assets/img/T1.jpg)
-![Captura T2](./assets/img/T2.jpg)
-![Captura T3](./assets/img/T3.jpg)
-![Captura T4](./assets/img/T4.jpg)
-![Captura T5](./assets/img/T5.jpg)
-![Captura T6](./assets/img/T6.jpg)
-![Captura T7](./assets/img/T7.jpg)
+![Captura T1](./assets/img/T1.jpeg)
+![Captura T2](./assets/img/T2.jpeg)
+![Captura T3](./assets/img/T3.jpeg)
+![Captura T4](./assets/img/T4.jpeg)
+![Captura T5](./assets/img/T5.jpeg)
+![Captura T6](./assets/img/T6.jpeg)
+![Captura T7](./assets/img/T7.jpeg)
 
 
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
