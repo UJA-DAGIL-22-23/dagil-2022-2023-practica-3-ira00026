@@ -570,7 +570,7 @@ Plantilla.BuscarCumpleVariosCriterios = function (criterio1, criterio2, criterio
 
 //HU 11 : Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
 
-Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio3,callBackFn) {
+Plantilla.recuperaVariosCriterios = async function (criterio1p,criterio2p,criterio3p,callBackFn) {
 
     // Intento conectar con el microservicio proyectos
     try {
@@ -579,7 +579,7 @@ Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio
         let vectorPlantilla = null
         if (response) {
             vectorPlantilla = await response.json()
-            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1 || persona.data.nombre_equipo === criterio2 || persona.data.posicion_campeonato === criterio3)
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1p || persona.data.nombre_equipo === criterio2p || persona.data.posicion_campeonato === criterio3p)
             
             callBackFn(filtro)
         }
@@ -593,12 +593,12 @@ Plantilla.recuperaVariosCriterios = async function (criterio1,criterio2,criterio
 }
 /**
  * Función principal para recuperar los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos.
- * @param {string} criterio1 - Primer criterio de búsqueda.
- * @param {string} criterio2 - Segundo criterio de búsqueda.
- * @param {string} criterio3 - Tercer criterio de búsqueda.
+ * @param {string} criterio1p - Primer criterio de búsqueda.
+ * @param {string} criterio2p - Segundo criterio de búsqueda.
+ * @param {string} criterio3p - Tercer criterio de búsqueda.
  * @returns {boolean} - Retorna verdadero.
  */
-Plantilla.BuscarVariosCriterios = function (criterio1, criterio2, criterio3){
-    this.recuperaVariosCriterios(criterio1, criterio2, criterio3, this.imprimeTodosMotociclistas);
+Plantilla.BuscarVariosCriterios = function (criterio1p, criterio2p, criterio3p){
+    this.recuperaVariosCriterios(criterio1p, criterio2p, criterio3p, this.imprimeTodosMotociclistas);
 
 }

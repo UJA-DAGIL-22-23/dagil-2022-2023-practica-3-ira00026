@@ -32,10 +32,7 @@
             title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Motociclistas</a>
         <a href="javascript:Plantilla.listarNombresAZ()" class="opcion-principal mostrar"
             title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Aa-Zz Motociclistas</a>
-           
-        <a href="javascript:Plantilla.mostrar()" class="opcion-principal mostrar"
-            title="Muestra los datos de la persona seleccionada">Mostrar una persona</a>
-     <br>
+        <br>
          
 
             <!--HU 08-->
@@ -130,11 +127,11 @@
            
             <td>
             <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
-            <input type="number" id="criterio3" name="criterio3"><br><br>
+            <input type="number" id="criterio3p" name="criterio3p"><br><br>
             </td> 
             <td>
             <label for="Tipo_Moto">Tipo_Moto</label>
-            <select id="criterio1" name="criterio1">
+            <select id="criterio1p" name="criterio1p">
                 <option value="">Selecciona una opción</option>
                 <option value="Yamaha YZR-M1">Yamaha YZR-M1</option>
                 <option value="Honda RC213V">Honda RC213V</option>
@@ -146,7 +143,7 @@
             </td>
             <td>
             <label for="Nombre_Equipo">Nombre_Equipo:</label>
-            <select id="criterio2" name="criterio2">
+            <select id="criterio2p" name="criterio2p">
                 <option value="">Selecciona una opción</option>
                 <option value="Yamaha Factory Racing">Yamaha Factory Racing</option>
                 <option value="Monster Energy Yamaha MotoGP">Monster Energy Yamaha MotoGP</option>
@@ -167,9 +164,9 @@
         </table>
     </form>
     <script>function BuscarCriterios(){
-        var criterio1term = document.getElementById('criterio1').value;
-        var criterio2term = document.getElementById('criterio2').value;
-        var criterio3term = document.getElementById('criterio3').value;
+        var criterio1term = document.getElementById('criterio1p').value;
+        var criterio2term = document.getElementById('criterio2p').value;
+        var criterio3term = document.getElementById('criterio3p').value;
         Plantilla.BuscarVariosCriterios(criterio1term,criterio2term,criterio3term);
     }
     </script>
