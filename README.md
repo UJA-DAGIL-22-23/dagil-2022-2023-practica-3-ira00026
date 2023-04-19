@@ -774,7 +774,77 @@ Plantilla.personaBuscar = function (nombreBuscar){
 
 
 10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
+* En esta HU he utilizado el método: getTodos.
+* En esta historia de usuario, las nuevas FUNCIONES IMPLEMENTADAS SON: recuperaCumpleVariosCriterios, BuscarCumpleVariosCriterios.
+
+```
+Plantilla.recuperaCumpleVariosCriterios = async function (criterio1,criterio2,criterio3,callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        const response = await fetch(url);
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1 && persona.data.nombre_equipo === criterio2 && persona.data.posicion_campeonato === criterio3)
+            
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+
+    }
+
+}
+```
+```
+Plantilla.BuscarCumpleVariosCriterios = function (criterio1, criterio2, criterio3){
+    this.recuperaCumpleVariosCriterios(criterio1, criterio2, criterio3, this.imprimeTodosMotociclistas);
+
+}
+```
+## Captura "HU 10":
+![Captura H10](./assets/img/H10.png)
+
 11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
+* En esta HU he utilizado el método: getTodos.
+* En esta historia de usuario, las nuevas FUNCIONES IMPLEMENTADAS SON: recuperaVariosCriterios, BuscarVariosCriterios.
+
+```
+Plantilla.recuperaVariosCriterios = async function (criterio1p,criterio2p,criterio3p,callBackFn) {
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        const response = await fetch(url);
+        let vectorPlantilla = null
+        if (response) {
+            vectorPlantilla = await response.json()
+            const filtro = vectorPlantilla.data.filter(persona => persona.data.tipo_moto === criterio1p || persona.data.nombre_equipo === criterio2p || persona.data.posicion_campeonato === criterio3p)
+            
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+
+    }
+
+}
+```
+```
+Plantilla.BuscarVariosCriterios = function (criterio1p, criterio2p, criterio3p){
+    this.recuperaVariosCriterios(criterio1p, criterio2p, criterio3p, this.imprimeTodosMotociclistas);
+
+}
+```
+## Captura "HU 11":
+![Captura H11](./assets/img/H11.png)
+
 
 
 # *FICHERO INDEX.HTML*:
