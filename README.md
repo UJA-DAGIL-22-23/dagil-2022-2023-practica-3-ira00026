@@ -256,7 +256,19 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 
 ```
 
+## Captura TRELLO al inicio "BACKLOG":
+* Las historias de usuario se aagruparán en INCREMENTOS, cada incremento debe de estar compuesto (como míinimo) de 3 historias de usuario. Los incrementos del desarrollo de mi aplicación de microservicios del deporte de "Motocilismo", consta de los siguientes incrementos: 
+* Incremento 1: Historias de usuario 01,02,03,04
+* Incremento 2 : Hisotrias de usuario 08,10,11
+
+![Captura T1](./assets/img/T1.jpg)
+![Captura T2](./assets/img/T2.jpg)
+
 ## Historias de usuario elegidas a implementar en mi aplicación de microservicios: 
+
+## Captura TRELLO primer incremento en "Implementación de código":
+![Captura T3](./assets/img/T3.jpg)
+
 
 ## HU 01:Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”.
 
@@ -636,6 +648,10 @@ Plantilla.listar = function () {
 ## Captura "HU 04":
 ![Captura tablaGETTODOS](./assets/img/tablaGETTODOS.jpg)
 
+## Captura TRELLO primer incremento en "test" segundo incremento en "Implementación de código":
+* Esta captura muestra que como el primer incremento ya tiene sus funciones implementadas, y pasa a la fase de "implementación de tests", por ese motivo, el segundo incremento pasa a la fase de "implementación de código".
+![Captura T4](./assets/img/T4.jpg)
+
 ## HU 08:
 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.
  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
@@ -764,6 +780,7 @@ Plantilla.personaBuscar = function (nombreBuscar){
 
 
 ```
+
 
 ## Captura "HU 08":
 ![Captura resultadobuscarnombre](./assets/img/resultadobuscarnombre.png)
@@ -1082,6 +1099,9 @@ table.listado-motociclistas {
     width: 100%;
 }
 ```
+## Captura TRELLO primer incremento en "añadir a README" y segundo incremento en "Test":
+* Esta captura muestra que, como el primer incremento ya tiene sus TDD implementados y pasa a la fase de "añadir al README", por ese motivo, el segundo incremento pasa a la fase de "test".
+![Captura T5](./assets/img/T5.jpg)
 
 # *TDD de funciones*: 
 
@@ -1349,6 +1369,23 @@ describe("Plantilla.recuperaCumpleVariosCriterios", function () {
         })
 ```
 
+## Captura TRELLO primer incremento en "DONE" y segundo incremento en "añadir a README":
+* Esta captura muestra que como el primer incremento ya ha sido documentado en el fichero README y pasa a la fase de "DONE", por ese motivo, el segundo incremento pasa a la fase de "añadir a README.
+![Captura T6](./assets/img/T6.jpg)
+
+## Captura TRELLO segundo incremento en "DONE":
+* Esta captura muestra que como el primer Y segundo incremento ya han sido documentados en el fichero README y están en la fase de "DONE", esto quiere decir, que en la fase "DONE", ya estaría terminado el flujo de trabajo y que están completadas todas las historias de usuario.
+![Captura T7](./assets/img/T7.jpg)
+
+## *RESUMEN DE FLUJO DE TRABAJO EN TRELLO*:
+
+![Captura T1](./assets/img/T1.jpg)
+![Captura T2](./assets/img/T2.jpg)
+![Captura T3](./assets/img/T3.jpg)
+![Captura T4](./assets/img/T4.jpg)
+![Captura T5](./assets/img/T5.jpg)
+![Captura T6](./assets/img/T6.jpg)
+![Captura T7](./assets/img/T7.jpg)
 
 
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
