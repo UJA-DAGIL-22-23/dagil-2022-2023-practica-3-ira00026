@@ -811,8 +811,8 @@ body>
 
 Para las historias de usuario 8,10 y 11, se han añadido 3 tipos de formularios:
 
-* Formulario "Buscar por nombre completo" --> Para la HU 08
---> Este formulario tiene una caja de texto para que el usuario escriba el nombre completo de la persona que desea buscar y un botón para ejecutar la búsqueda. Al hacer clic en el botón, se activa una función de JavaScript que toma el valor de la caja de texto y llama a una función llamada "personaBuscar" en un objeto llamado "Plantilla". Esta función probablemente buscará en una base de datos u otro origen de datos para encontrar información sobre la persona buscada y mostrarla al usuario.
+*Formulario "Buscar por nombre completo" --> Para la HU 08*
+* Este formulario tiene una caja de texto para que el usuario escriba el nombre completo de la persona que desea buscar y un botón para ejecutar la búsqueda. Al hacer clic en el botón, se activa una función de JavaScript que toma el valor de la caja de texto y llama a una función llamada "personaBuscar" en un objeto llamado "Plantilla". Esta función probablemente buscará en una base de datos u otro origen de datos para encontrar información sobre la persona buscada y mostrarla al usuario.
 
 ```
 <form> 
@@ -831,8 +831,8 @@ Para las historias de usuario 8,10 y 11, se han añadido 3 tipos de formularios:
 ## Captura Formulario 1 Index.html:
 ![Captura F1](./assets/img/F1.png)
 
-* Formulario "Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar" --> Para la HU10
---> Este formulario tiene tres campos de entrada y un botón de búsqueda. Los campos son "Posicion_Campeonato", "Tipo_Moto" y "Marcas_Motocicletas". El usuario puede seleccionar una opción en cada campo y luego hacer clic en el botón de búsqueda para buscar los motociclistas que cumplen con los criterios seleccionados. Al hacer clic en el botón, se activa una función de JavaScript que toma los valores de los campos y llama a una función llamada "BuscarCumpleVariosCriterios" en un objeto llamado "Plantilla". Esta función probablemente buscará en una base de datos u otro origen de datos para encontrar motociclistas que cumplen con los criterios seleccionados y mostrarlos al usuario.
+*Formulario "Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar" --> Para la HU10*
+* Este formulario tiene tres campos de entrada y un botón de búsqueda. Los campos son "Posicion_Campeonato", "Tipo_Moto" y "Marcas_Motocicletas". El usuario puede seleccionar una opción en cada campo y luego hacer clic en el botón de búsqueda para buscar los motociclistas que cumplen con los criterios seleccionados. Al hacer clic en el botón, se activa una función de JavaScript que toma los valores de los campos y llama a una función llamada "BuscarCumpleVariosCriterios" en un objeto llamado "Plantilla". Esta función probablemente buscará en una base de datos u otro origen de datos para encontrar motociclistas que cumplen con los criterios seleccionados y mostrarlos al usuario.
 
 ```
 <table class="listado-motociclistas">
@@ -897,8 +897,8 @@ Para las historias de usuario 8,10 y 11, se han añadido 3 tipos de formularios:
 ## Captura Formulario 2 Index.html:
 ![Captura F2](./assets/img/F2.png)
 
-* Formulario "Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar" --> Para la HU11
---> Este es un formulario HTML que permite a los usuarios buscar motociclistas que cumplen con ciertos criterios comunes. El formulario incluye tres campos que el usuario puede rellenar: Posicion_Campeonato (una posición en el campeonato de motociclismo), Tipo_Moto (el tipo de motocicleta que se utiliza en la carrera) y Marcas_Motocicletas (el equipo o la marca de la motocicleta utilizada). También hay un botón "BUSCAR MOTOCICILISTA/S" que ejecuta una función en JavaScript para buscar los criterios especificados en la base de datos de motociclistas. Cuando el usuario hace clic en el botón, la función recoge los términos de búsqueda del usuario y los utiliza para buscar los motociclistas que cumplen con los criterios especificados.
+*Formulario "Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar" --> Para la HU11*
+* Este es un formulario HTML que permite a los usuarios buscar motociclistas que cumplen con ciertos criterios comunes. El formulario incluye tres campos que el usuario puede rellenar: Posicion_Campeonato (una posición en el campeonato de motociclismo), Tipo_Moto (el tipo de motocicleta que se utiliza en la carrera) y Marcas_Motocicletas (el equipo o la marca de la motocicleta utilizada). También hay un botón "BUSCAR MOTOCICILISTA/S" que ejecuta una función en JavaScript para buscar los criterios especificados en la base de datos de motociclistas. Cuando el usuario hace clic en el botón, la función recoge los términos de búsqueda del usuario y los utiliza para buscar los motociclistas que cumplen con los criterios especificados.
 
 ```
 <table class="listado-motociclistas">
