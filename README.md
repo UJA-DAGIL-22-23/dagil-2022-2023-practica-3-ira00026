@@ -769,6 +769,7 @@ Plantilla.personaBuscar = function (nombreBuscar){
 ![Captura resultadobuscarnombre](./assets/img/resultadobuscarnombre.png)
 ![Captura buscarnombre](./assets/img/buscarnombre.png)
 
+## HU 10:
 
 10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 * En esta HU he utilizado el método: getTodos.
@@ -805,6 +806,8 @@ Plantilla.BuscarCumpleVariosCriterios = function (criterio1, criterio2, criterio
 ```
 ## Captura "HU 10":
 ![Captura H10](./assets/img/H10.png)
+
+## HU 11:
 
 11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 * En esta HU he utilizado el método: getTodos.
