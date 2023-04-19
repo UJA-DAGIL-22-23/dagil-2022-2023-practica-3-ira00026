@@ -1081,7 +1081,7 @@ table.listado-motociclistas {
 
 # *TDD de funciones*: 
 
-## Captura TDD de funciones implementados en el fichero ms-plantilla-spec.js:
+## Captura TDD de funciones implementados en el fichero ms-plantilla-spec.js y su correcto funcionamiento:
 ![Captura TDDS](./assets/img/TDDS.png)
 
 Funciones añadidas de esta aplicación de microservicios: 
@@ -1109,7 +1109,7 @@ Funciones añadidas de esta aplicación de microservicios:
 
 En esta sección se muestran ejemplos los TDD implementados para las funciones implementadas de la aplicación de microservicios, se pondrá un ejemplo de cada tipo de función, es decir, si hay varias funciones del tipo "recupera", se pondrá un ejemplo para visualizar la implementación que se ha usado en todas aquellas funciones que son similares, para tener una ligera idea y no añadir tanto texto:
 
-## Función "Plantilla.recupera":
+## TDD Función "Plantilla.recupera":
 
 ```
 describe("Plantilla.recupera", function () {
@@ -1161,7 +1161,7 @@ it("muestra un mensaje de error si no se puede acceder al API Gateway",
 
 ```
 
-## Función "Plantilla.imprime":
+## TDD Función "Plantilla.imprime":
 
 ```
 describe("Plantilla.imprime: ", function() {
@@ -1176,7 +1176,7 @@ describe("Plantilla.imprime: ", function() {
 
 ```
 
-## Función "Plantilla.cabeceraTable":
+## TDD Función "Plantilla.cabeceraTable":
 ```
 describe("Plantilla.cabeceraTable: ", function () {
   
@@ -1192,7 +1192,7 @@ describe("Plantilla.cabeceraTable: ", function () {
 });
 ```
 
-## Función "Plantilla.cuerpoTr":
+## TDD Función "Plantilla.cuerpoTr":
 
 ```
 describe('Plantilla.cuerpoTr', () => {
@@ -1245,7 +1245,7 @@ describe('Plantilla.cuerpoTr', () => {
   
 ```
 
-## Función "Plantilla.pieTable":
+## TDD Función "Plantilla.pieTable":
 ```
 
 describe("Plantilla.pieTable ", function () {
@@ -1258,7 +1258,7 @@ describe("Plantilla.pieTable ", function () {
 
 * Las siguientes funciones son muy parecidas a las anteriores en relación a las tablas, pero "cabeceraTableN" y "cuerpoTrN" utilizan el método: "getNombres" en vez del método: "getTodos".
 
-## Función "Plantilla.cabeceraTableN":
+## TDD Función "Plantilla.cabeceraTableN":
 ```
 describe("Plantilla.cabeceraTableN: ", function () {
       
@@ -1273,7 +1273,7 @@ describe("Plantilla.cabeceraTableN: ", function () {
             });
     });
 ```
-## Función "Plantilla.cuerpoTrN":
+## TDD Función "Plantilla.cuerpoTrN":
 ```
 describe('Plantilla.cuerpoTrN', () => {
         it("debería contener el nombre pasado como parámetro en la cadena que retorna la función",
@@ -1283,7 +1283,7 @@ describe('Plantilla.cuerpoTrN', () => {
       });
 ```
 
-## Función "Plantilla.sustituyeTags":
+## TDD Función "Plantilla.sustituyeTags":
 
 ```
 describe('Plantilla.sustituyeTags', function () {
@@ -1315,7 +1315,7 @@ describe('Plantilla.sustituyeTags', function () {
 
 ```
 
-## Función "Plantilla.recuperaCumpleVariosCriterios":
+## TDD Función "Plantilla.recuperaCumpleVariosCriterios":
 
 ```
 describe("Plantilla.recuperaCumpleVariosCriterios", function () {
@@ -1345,8 +1345,7 @@ describe("Plantilla.recuperaCumpleVariosCriterios", function () {
         })
 ```
 
-## Captura TDD  del correcto funcionamiento de las funciones indicadas de los métodos "getTodos,getNombres":
-![Captura tdd1](./assets/img/tdd1.png)
+
 
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
