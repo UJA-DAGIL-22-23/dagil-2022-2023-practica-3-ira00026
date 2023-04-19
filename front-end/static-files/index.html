@@ -58,15 +58,12 @@
         <thead>
             <th>Buscar Motociclista que cumpla exactamente con los siguientes campos a rellenar</th>
         </thead>
-        <th>Posicion_Campeonato</th><th>Tipo_Moto</th><th>Marcas_Motocicletas</th><th>Opción</th>
+        <th>Tipo_Moto</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th><th>Opción</th>
     </thead>
     <tbody>
     <tr>
        
-        <td>
-        <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
-        <input type="number" id="criterio3" name="criterio3"><br><br>
-        </td> 
+        
         <td>
         <label for="Tipo_Moto">Tipo_Moto</label>
         <select id="criterio1" name="criterio1">
@@ -93,7 +90,10 @@
 
         </select><br><br>
         </td>
-        
+        <td>
+            <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
+            <input type="number" id="criterio3" name="criterio3"><br><br>
+            </td> 
         <td>
         <div><button type="button" onclick="BuscarCumpleCriterios()">BUSCAR MOTOCILISTA/S</button></div>
         </td>
@@ -120,15 +120,12 @@
             <thead>
                 <th>Buscar motociclistas que cumplen/tienen en común alguno de los siguientes campos a rellenar</th>
             </thead>
-            <th>Posicion_Campeonato</th><th>Tipo_Moto</th><th>Marcas_Motocicletas</th><th>Opción</th>
+            <th>Tipo_Moto</th><th>Marcas_Motocicletas</th><th>Posicion_Campeonato</th><th>Opción</th>
         </thead>
         <tbody>
         <tr>
            
-            <td>
-            <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
-            <input type="number" id="criterio3p" name="criterio3p"><br><br>
-            </td> 
+            
             <td>
             <label for="Tipo_Moto">Tipo_Moto</label>
             <select id="criterio1p" name="criterio1p">
@@ -155,6 +152,10 @@
 
             </select><br><br>
             </td>
+            <td>
+                <label for="Posicion_Campeonato">Posicion_Campeonato:</label>
+                <input type="number" id="criterio3p" name="criterio3p"><br><br>
+                </td> 
             
             <td>
             <div><button type="button" onclick="BuscarCriterios()">BUSCAR MOTOCILISTA/S</button></div>
