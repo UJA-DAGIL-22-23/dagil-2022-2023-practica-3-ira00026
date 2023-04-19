@@ -776,6 +776,39 @@ Plantilla.personaBuscar = function (nombreBuscar){
 10. Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 11. Ver un listado de todos los datos de jugadores/equipos que cumplen al menos con uno de un conjunto de criterios de búsqueda indicado por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre).
 
+
+# *FICHERO INDEX.HTML*:
+
+Se han añadido los siguientes botones:
+* Listar Datos Completos --> Para la HU4
+* Listar Nombres Motociclistas --> Para la HU2
+* Listar Nombres Aa-Zz Motociclistas --> Para la HU3
+
+```
+body>
+    <h1>Aplicación Microservicios Plantilla</h1>
+    <!-- Barra de navegación de la aplicación -->
+    <nav>
+        <a href="javascript:Plantilla.procesarHome()" class="opcion-principal"
+            title="Llama a la ruta / del MS Plantilla">Home</a>
+        <a href="javascript:Plantilla.procesarAcercaDe()" class="opcion-principal"
+            title="Llama a la ruta /acercade del MS Plantilla">Acerca de</a>
+        <a href="javascript:Plantilla.listar()" class="opcion-principal mostrar"
+            title="Realiza un listado de todas los motociclistas y datos que hay en la BBDD">Listar Datos Completos</a>
+        <a href="javascript:Plantilla.listarNombres()" class="opcion-principal mostrar"
+            title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Motociclistas</a>
+        <a href="javascript:Plantilla.listarNombresAZ()" class="opcion-principal mostrar"
+            title="Realiza un listado de todas los nombres de los motociclistas que hay en la BBDD">Listar Nombres Aa-Zz Motociclistas</a>
+      
+     <br>
+
+```
+
+Para las historias de usuario 8,10 y 11, se han añadido 3 tipos de formularios:
+
+
+# *FICHERO ms-plantilla.cdd*:
+
 # *TDD de funciones*: 
 
 En esta sección se muestran ejemplos los TDD implementados para las funciones implementadas de la aplicación de microservicios, se pondrá un ejemplo de cada tipo de función, es decir, si hay varias funciones del tipo "recupera", se pondrá un ejemplo para visualizar la implementación que se ha usado en todas aquellas funciones que son similares, para tener una ligera idea y no añadir tanto texto:
