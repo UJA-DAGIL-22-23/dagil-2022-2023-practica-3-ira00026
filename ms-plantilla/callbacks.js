@@ -126,9 +126,8 @@ getNAlfabeticamente: async (req, res) => {
         CORS(res).status(500).json({ error: error.description })
     }
 },
-}
- 
 
+}
 
 // CALLBACKS ADICIONALES
 

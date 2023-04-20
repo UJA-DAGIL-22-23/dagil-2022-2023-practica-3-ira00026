@@ -190,6 +190,7 @@ Plantilla.cuerpoTr = function (p) {
     <td>${puntuaciones_carrera}</td>
     <td>${marcas_motocicletas}</td>
     <td>${d.posicion_campeonato}</td>
+    
     </tr>
    
     `;
@@ -610,3 +611,5 @@ Plantilla.BuscarVariosCriterios = function (criterio1p, criterio2p, criterio3p){
     this.recuperaVariosCriterios(criterio1p, criterio2p, criterio3p, this.imprimeTodosMotociclistas);
 
 }
+
+

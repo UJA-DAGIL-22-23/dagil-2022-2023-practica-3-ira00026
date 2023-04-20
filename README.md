@@ -298,7 +298,7 @@ Enlace tablero Trello: https://trello.com/invite/b/aN7DSvZt/ATTIe794db3800929c0b
 02. Ver un listado solo con los nombres de todos los jugadores/equipos.
 * Para esta HU, he implementado el método : "getNombres".
 
-
+En el fichero callbacks.js:
 ```
 getNombres: async (req, res) => {
     try {
@@ -318,6 +318,7 @@ getNombres: async (req, res) => {
 },
 
 ```
+En el fichero routes,js:
 ```
 router.get("/getNombres", async (req, res) => {
     try {
@@ -327,7 +328,7 @@ router.get("/getNombres", async (req, res) => {
     }
 });
 ```
-
+En el fichero ms-plantilla.js:
 * Compuesto de las funciones: recuperaNombres, imprimeNombres, cabeceraTableN, cuerpoTrN, pieTableN, listarNombres
 
 ```
@@ -413,6 +414,7 @@ Plantilla.listarNombres = function () {
 03. Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente. 
 * Para esta HU, he implementado el método : "getNAlfabeticamente".
 
+En el fichero callbacks.js:
 ```
 getNAlfabeticamente: async (req, res) => {
     try {
@@ -433,6 +435,7 @@ getNAlfabeticamente: async (req, res) => {
 }
 
 ```
+En el fichero routes.js:
 ```
 router.get("/getNAlfabeticamente", async (req, res) => {
     try {
@@ -443,7 +446,7 @@ router.get("/getNAlfabeticamente", async (req, res) => {
 });
 
 ```
-
+En el fichero ms - plantilla.js:
 * Compuesto de las funciones: recuperaNombresAZ, imprimeNCompuesto de las funciones: recuperaNombres, imprimeNAZ, cabeceraTableNAZ, cuerpoTrNAZ, pieTableNAZ, listarNombresAZ
 
 ```
@@ -526,6 +529,7 @@ Plantilla.listarNombresAZ = function () {
 04. Ver un listado con todos los datos de todos los jugadores/equipos
 * Para esta HU, he implementado el método : "getTodos", de este método se sustentarán la mayoría de funciones de la aplicación. 
 
+En el fichero callbacks.js:
 ```
 getTodos: async (req, res) => {
     try {
@@ -545,6 +549,7 @@ getTodos: async (req, res) => {
 },
 
 ```
+En el fichero routes.js:
 ```
 router.get("/getTodos", async (req, res) => {
     try {
@@ -556,7 +561,7 @@ router.get("/getTodos", async (req, res) => {
 
 ```
 
-
+En el fichero ms-plantilla.js
 * Compuesto de las funciones: recupera, imprime, cabeceraTable, cuerpoTr, pieTable, listar.
 
 ```
@@ -1136,6 +1141,8 @@ Funciones añadidas de esta aplicación de microservicios:
 En esta sección se muestran ejemplos los TDD implementados para las funciones implementadas de la aplicación de microservicios, se pondrá un ejemplo de cada tipo de función, es decir, si hay varias funciones del tipo "recupera", se pondrá un ejemplo para visualizar la implementación que se ha usado en todas aquellas funciones que son similares, para tener una ligera idea y no añadir tanto texto:
 
 ## TDD Función "Plantilla.recupera":
+* Este TDD (verifica que la función Plantilla.recupera recupere los datos de una API Gateway y ejecute una función de devolución de llamada (callback) en caso de éxito. También verifica que la función muestre un mensaje de error en caso de que no se pueda acceder a la API Gateway.
+* En el segundo caso de prueba, se utiliza otro mock del resultado de la función fetch que simula un error al acceder a la API Gateway. Se verifica que la función alert se haya llamado con el mensaje de error esperado y que no se haya llamado al callback. También se verifica que la función console.error haya sido llamada. En resumen, este TDD verifica que la función Plantilla.recupera se comporte de manera adecuada en caso de una respuesta exitosa y en caso de un error al acceder a la API Gateway.
 
 ```
 describe("Plantilla.recupera", function () {
@@ -1189,6 +1196,7 @@ it("muestra un mensaje de error si no se puede acceder al API Gateway",
 
 ## TDD Función "Plantilla.imprime":
 
+* En este TDD, primero, se crea un objeto de prueba con un vector vacío y se define un título para la función. Luego, se llama a la función Plantilla.imprime pasándole el objeto de prueba como argumento. Finalmente, se utiliza la función expect para comprobar que el HTML resultante en la página tenga el título definido.
 ```
 describe("Plantilla.imprime: ", function() {
     it("Mostrar datos nulos cuando le pasamos vector nulo", 
@@ -1203,6 +1211,8 @@ describe("Plantilla.imprime: ", function() {
 ```
 
 ## TDD Función "Plantilla.cabeceraTable":
+* Este TDD prueba la función Plantilla.cabeceraTable(), que se encarga de devolver una cadena de texto que contiene las etiquetas HTML para la cabecera de una tabla. El objetivo del TDD es verificar que la función devuelve la cadena de texto correcta con las cabeceras de las columnas de la tabla en el orden adecuado. Se realiza una comparación con una cadena de texto esperada utilizando el método toBe().
+
 ```
 describe("Plantilla.cabeceraTable: ", function () {
   
@@ -1219,6 +1229,7 @@ describe("Plantilla.cabeceraTable: ", function () {
 ```
 
 ## TDD Función "Plantilla.cuerpoTr":
+* Este TDD describe la función Plantilla.cuerpoTr, la cual recibe un objeto data que contiene información sobre un piloto de motociclismo y devuelve una cadena de texto que representa el cuerpo de una fila (tr) de una tabla HTML.
 
 ```
 describe('Plantilla.cuerpoTr', () => {
@@ -1272,6 +1283,7 @@ describe('Plantilla.cuerpoTr', () => {
 ```
 
 ## TDD Función "Plantilla.pieTable":
+* Este TDD se encarga de verificar que la función Plantilla.pieTable() devuelve correctamente las etiquetas HTML de cierre de una tabla. En particular, se verifica que devuelve </tbody></table>.
 ```
 
 describe("Plantilla.pieTable ", function () {
@@ -1285,6 +1297,8 @@ describe("Plantilla.pieTable ", function () {
 * Las siguientes funciones son muy parecidas a las anteriores en relación a las tablas, pero "cabeceraTableN" y "cuerpoTrN" utilizan el método: "getNombres" en vez del método: "getTodos".
 
 ## TDD Función "Plantilla.cabeceraTableN":
+
+* Este TDD prueba la función "Plantilla.cabeceraTableN()", que debería devolver una cadena de texto que contiene las cabeceras de una tabla HTML para mostrar solo el nombre de un conjunto de datos. La función espera que la salida incluya la etiqueta de inicio de una tabla HTML con la clase "listado-Plantilla", una etiqueta de encabezado con una columna llamada "Nombre" y una etiqueta de inicio de cuerpo de tabla.
 ```
 describe("Plantilla.cabeceraTableN: ", function () {
       
@@ -1300,6 +1314,8 @@ describe("Plantilla.cabeceraTableN: ", function () {
     });
 ```
 ## TDD Función "Plantilla.cuerpoTrN":
+* Este TDD prueba la función Plantilla.cuerpoTrN, la cual toma como parámetro el nombre de un piloto y devuelve una cadena de texto que representa una fila de una tabla HTML con una única columna para el nombre. El TDD verifica que la cadena de texto devuelta por la función contenga el nombre pasado como parámetro.
+
 ```
 describe('Plantilla.cuerpoTrN', () => {
         it("debería contener el nombre pasado como parámetro en la cadena que retorna la función",
@@ -1310,38 +1326,42 @@ describe('Plantilla.cuerpoTrN', () => {
 ```
 
 ## TDD Función "Plantilla.sustituyeTags":
+* Este TDD describe una prueba para la función Plantilla.sustituyeTags, la cual toma una plantilla HTML con tags específicos y un objeto de datos con valores correspondientes para esos tags. La función reemplaza todos los tags en la plantilla con los valores del objeto de datos y devuelve la cadena de texto resultante. La prueba verifica que la función reemplaza correctamente todos los tags en la plantilla con los valores del objeto de datos y devuelve la cadena de texto esperada.
 
 ```
 describe('Plantilla.sustituyeTags', function () {
-        // Preparar los datos de la prueba
-        const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
-        const persona = {
-            data: {
-                nombre: 'Jorge Lorenzo',
-                nombre_equipo: 'Equipo 1',
-                tipo_moto: 'Moto 1',
-                fecha_nacimiento: {
-                    dia: '01',
-                    mes: '01',
-                    anio: '1990'
-                },
-                anios_experiencia: 5,
-                puntuaciones_carrera: '10,8,6',
-                marcas_motocicletas: 'Marca 1, Marca 2',
-                posicion_campeonato: 1
-            }
-        };
-    
-        // Realizar los expect
-        it('debería devolver la plantilla con los tags reemplazados por los datos de la persona',
-            function () {
-                expect(Plantilla.sustituyeTags(plantilla, persona)).toBe('<tr><td>Jorge Lorenzo</td><td>Equipo 1</td><td>Moto 1</td><td>01/01/1990</td><td>5</td><td>10,8,6</td><td>Marca 1, Marca 2</td><td>1</td></tr>');
-            });
+    const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
+  
+    // Realizar los expect
+    it('debería reemplazar todos los tags en la plantilla con los valores de la persona', function () {
+      const persona = {
+        data: {
+          nombre: 'Jorge Lorenzo',
+          nombre_equipo: 'Equipo 1',
+          tipo_moto: 'Moto 1',
+          fecha_nacimiento: {
+            dia: '01',
+            mes: '01',
+            anio: '1990'
+          },
+          anios_experiencia: [5, 4, 3],
+          puntuaciones_carrera: [10, 8, 6],
+          marcas_motocicletas: ['Marca 1', 'Marca 2'],
+          posicion_campeonato: 1
+        }
+      };
+  
+      const resultadoEsperado = '<tr><td>Jorge Lorenzo</td><td>Equipo 1</td><td>Moto 1</td><td>01/01/1990</td><td>5, 4, 3</td><td>10, 8, 6</td><td>Marca 1, Marca 2</td><td>1</td></tr>';
+  
+      expect(Plantilla.sustituyeTags(plantilla, persona)).toBe(resultadoEsperado);
     });
+    
+  });
 
 ```
 
 ## TDD Función "Plantilla.recuperaCumpleVariosCriterios":
+* Este TDD prueba la función recuperaCumpleVariosCriterios de la clase Plantilla. Se utiliza el framework de pruebas Jasmine para verificar que la función muestre un mensaje de error si no se puede acceder al API Gateway. Se usa spyOn para simular el comportamiento de la función window.fetch y se espera que lance una excepción. También se simula la función callBackFn y se espera que no sea llamada. Finalmente, se espera que se muestre un mensaje de error con window.alert y que se registre un error en la consola con console.error.
 
 ```
 describe("Plantilla.recuperaCumpleVariosCriterios", function () {

@@ -187,6 +187,7 @@ describe("Plantilla.imprime: ", function() {
            
     })
 })
+
     
 //TDD CABECERA GETTODOS
 
@@ -458,7 +459,7 @@ describe("Plantilla.recuperaNombresAZ", function () {
 describe('Plantilla.sustituyeTags', function () {
     const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
   
-    // Caso de prueba 1
+    // Realizar los expect
     it('debería reemplazar todos los tags en la plantilla con los valores de la persona', function () {
       const persona = {
         data: {
@@ -481,7 +482,6 @@ describe('Plantilla.sustituyeTags', function () {
   
       expect(Plantilla.sustituyeTags(plantilla, persona)).toBe(resultadoEsperado);
     });
-  
     
   });
   
