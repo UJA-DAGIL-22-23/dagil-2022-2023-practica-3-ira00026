@@ -455,32 +455,36 @@ describe("Plantilla.recuperaNombresAZ", function () {
     });
 
 //TDD DE SUSTITUYETAGS
-    describe('Plantilla.sustituyeTags', function () {
-        // Preparar los datos de la prueba
-        const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
-        const persona = {
-            data: {
-                nombre: 'Jorge Lorenzo',
-                nombre_equipo: 'Equipo 1',
-                tipo_moto: 'Moto 1',
-                fecha_nacimiento: {
-                    dia: '01',
-                    mes: '01',
-                    anio: '1990'
-                },
-                anios_experiencia: 5,
-                puntuaciones_carrera: '10,8,6',
-                marcas_motocicletas: 'Marca 1, Marca 2',
-                posicion_campeonato: 1
-            }
-        };
-    
-        // Realizar los expect
-        it('debería devolver la plantilla con los tags reemplazados por los datos de la persona',
-            function () {
-                expect(Plantilla.sustituyeTags(plantilla, persona)).toBe('<tr><td>Jorge Lorenzo</td><td>Equipo 1</td><td>Moto 1</td><td>01/01/1990</td><td>5</td><td>10,8,6</td><td>Marca 1, Marca 2</td><td>1</td></tr>');
-            });
+describe('Plantilla.sustituyeTags', function () {
+    const plantilla = '<tr><td>### NOMBRE ###</td><td>### NOMBRE_EQUIPO ###</td><td>### TIPO_MOTO ###</td><td>### FECHA_NACIMIENTO ###</td><td>### ANIOS_EXPERIENCIA ###</td><td>### PUNTUACIONES_CARRERA ###</td><td>### MARCAS_MOTOCICLETAS ###</td><td>### POSICION_CAMPEONATO ###</td></tr>';
+  
+    // Caso de prueba 1
+    it('debería reemplazar todos los tags en la plantilla con los valores de la persona', function () {
+      const persona = {
+        data: {
+          nombre: 'Jorge Lorenzo',
+          nombre_equipo: 'Equipo 1',
+          tipo_moto: 'Moto 1',
+          fecha_nacimiento: {
+            dia: '01',
+            mes: '01',
+            anio: '1990'
+          },
+          anios_experiencia: [5, 4, 3],
+          puntuaciones_carrera: [10, 8, 6],
+          marcas_motocicletas: ['Marca 1', 'Marca 2'],
+          posicion_campeonato: 1
+        }
+      };
+  
+      const resultadoEsperado = '<tr><td>Jorge Lorenzo</td><td>Equipo 1</td><td>Moto 1</td><td>01/01/1990</td><td>5, 4, 3</td><td>10, 8, 6</td><td>Marca 1, Marca 2</td><td>1</td></tr>';
+  
+      expect(Plantilla.sustituyeTags(plantilla, persona)).toBe(resultadoEsperado);
     });
+  
+    
+  });
+  
 
     //TDD DE LA FUNCION RECUPERAPERSONABUSCAR
     describe("Plantilla.recuperapersonaBuscar", function () {
