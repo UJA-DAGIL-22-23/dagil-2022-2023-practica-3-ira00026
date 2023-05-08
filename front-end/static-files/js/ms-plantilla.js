@@ -437,6 +437,8 @@ Plantilla.plantillaTablaMotociclistas.cabecera = `<table width="100%" class="lis
     `;
 
 // Elemento TR que muestra los datos de una persona
+
+
 Plantilla.plantillaTablaMotociclistas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.NOMBRE}">
         <td>${Plantilla.plantillaTags.NOMBRE}</td>
@@ -463,6 +465,10 @@ Plantilla.plantillaTablaMotociclistas.pie = `        </tbody>
  * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
  */           
+
+// VICTOR: 19-ABR-2023
+// El problema está al mostrar los vectores, dado que los une con comas y no deja espacios en medio
+// Por tanto, hay que hacerles un join que deje algún espacio entre los elementos.
 Plantilla.sustituyeTags = function (plantilla, persona) {
     return plantilla
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
